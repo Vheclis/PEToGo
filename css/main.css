@@ -161,6 +161,79 @@ h4 {
     margin: 70px 0;
 }
 
+.div-move-page {
+    margin-top: 80px;
+}
+
+.div-move-page ul {
+    display: flex;
+    flex-direction: row;
+    float: inherit;
+    text-align: center;
+}
+
+.div-move-page li {
+    padding: 10px 10px;
+    border: solid 1px darkblue;
+    margin: 2px;
+
+}
+
+.div-move-page li:hover {
+    background-color: darkblue;
+    color: white;
+}
+.div-move-page ul .active {
+    background-color: darkblue;
+
+    color: white;
+}
+
+.div-signIn {
+    font-weight: bolder;
+    font-size: large;
+    background-color: #303030;
+    color: ghostwhite;
+    width: 100%;
+    border: 2px solid black;
+    border-radius: 8px;
+    margin-top: 40px;
+    padding: 10px 5px;
+    display: flex;
+    flex-direction: row;
+}
+
+.div-signIn form {
+    margin: 10px;
+    width: 100%;
+}
+
+.div-field{
+    display:flex;
+    flex-direction: row
+}
+
+
+textarea{
+    margin-top: 5px;
+    color: gray;
+}
+
+.div-signIn input{
+    width: 100%;
+    color: black;
+    margin: 5px 0px 2px 5px;
+    font-size: medium;
+}
+
+
+.div-signIn span {
+    font-weight: bolder;
+    font-size: large;
+    color: ghostwhite;
+    margin: 0px
+}
+
 .div-user-box {
     background-color: dodgerblue;
     padding: 50px 20px;
@@ -188,6 +261,7 @@ h4 {
 }
 
 ul {
+
     list-style-type: none;
     padding: 0px 5px;
 }
@@ -242,6 +316,10 @@ span {
     background-color: transparent;
     border: 1px solid darkblue;
     color: darkblue;
+}
+
+.btn:enabled{
+    color: white;
 }
 
 .panel-footer .btn {
