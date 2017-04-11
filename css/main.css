@@ -1,0 +1,234 @@
+body {
+    font: 400 15px Lato, sans-serif ;
+    line-height: 1.8;
+    color: #f6f6f6;
+
+
+}
+
+.row {
+    display: flex;
+}
+
+h2 {
+    font-size: 30px;
+    text-transform: uppercase;
+    color: oldlace;
+    font-weight: bolder;
+    margin-bottom: 5px;
+}
+h4 {
+    font-size: 19px;
+    line-height: 1.375em;
+    color: #303030;
+    font-weight: 400;
+    margin-bottom: 30px;
+}
+.jumbotron {
+    background-color: lightskyblue;
+    color: #fff;
+    padding: 50px 25px;
+    font-family: Montserrat, sans-serif;
+}
+.container-fluid {
+    padding: 30px 50px;
+}
+.bg-grey {
+    background-color: #f6f6f6;
+}
+.logo-small {
+    color: lightskyblue;
+    font-size: 50px;
+}
+.logo {
+    color: lightskyblue;
+    font-size: 200px;
+}
+.thumbnail {
+    padding: 0 0 15px 0;
+    border: none;
+    border-radius: 0;
+}
+.thumbnail img {
+    width: 100%;
+    height: 100%;
+    margin-bottom: 10px;
+}
+.carousel-control.right, .carousel-control.left {
+    background-image: none;
+    color: lightskyblue;
+}
+.carousel-indicators li {
+    border-color: lightskyblue;
+}
+.carousel-indicators li.active {
+    background-color: lightskyblue;
+}
+.item h4 {
+    font-size: 19px;
+    line-height: 1.375em;
+    font-weight: 400;
+    font-style: italic;
+    margin: 70px 0;
+}
+
+.div-user-box {
+    background-color: dodgerblue;
+    padding: 50px 20px;
+    border-radius: 10px;
+    margin: 0px 10px 10px 0px;
+    text-align: left;
+    border: 2px solid black;
+}
+
+.div-blue-box {
+    background-color: cornflowerblue;
+    padding: 40px 20px;
+    border-radius: 10px;
+    width: 100%;
+    border: 2px solid black;
+
+}
+
+.div-data-box {
+    background-color: dodgerblue;
+    padding: 5px 20px;
+    border: 2px solid black;
+
+
+}
+
+ul {
+    list-style-type: none;
+    padding: 0px 5px;
+}
+
+span {
+    font-weight: bolder;
+    color: black;
+}
+
+.item span {
+    font-style: normal;
+}
+.panel {
+    border: 1px solid lightskyblue;
+    border-radius:0 !important;
+    transition: box-shadow 0.5s;
+}
+.panel:hover {
+    box-shadow: 5px 0px 40px rgba(0,0,0, .2);
+}
+.panel-footer .btn:hover {
+    border: 1px solid lightskyblue;
+    background-color: #fff !important;
+    color: lightskyblue;
+}
+.panel-heading {
+    color: #fff !important;
+    background-color: lightskyblue !important;
+    padding: 25px;
+    border-bottom: 1px solid transparent;
+    border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px;
+}
+.panel-footer {
+    background-color: white !important;
+}
+.panel-footer h3 {
+    font-size: 32px;
+}
+.panel-footer h4 {
+    color: #aaa;
+    font-size: 14px;
+}
+
+.btn {
+    background-color: darkblue;
+}
+
+.btn:hover{
+    background-color: transparent;
+    border: 1px solid darkblue;
+    color: darkblue;
+}
+
+.panel-footer .btn {
+    margin: 1px 0;
+    background-color: lightskyblue;
+    color: #fff;
+}
+.navbar {
+    margin-bottom: 0;
+    background-color: lightskyblue;
+    z-index: 9999;
+    border: 0;
+    font-size: 12px !important;
+    line-height: 1.42857143 !important;
+    letter-spacing: 4px;
+    border-radius: 0;
+    font-family: Montserrat, sans-serif;
+}
+.navbar li a, .navbar .navbar-brand {
+    color: #fff !important;
+}
+.navbar-nav li a:hover, .navbar-nav li.active a {
+    color: lightskyblue !important;
+    background-color: #fff !important;
+}
+.navbar-default .navbar-toggle {
+    border-color: transparent;
+    color: #fff !important;
+}
+footer .glyphicon {
+    font-size: 20px;
+    margin-bottom: 20px;
+    color: lightskyblue;
+}
+.slideanim {visibility:hidden;}
+.slide {
+    animation-name: slide;
+    -webkit-animation-name: slide;
+    animation-duration: 1s;
+    -webkit-animation-duration: 1s;
+    visibility: visible;
+}
+@keyframes slide {
+    0% {
+        opacity: 0;
+        transform: translateY(70%);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0%);
+    }
+}
+@-webkit-keyframes slide {
+    0% {
+        opacity: 0;
+        -webkit-transform: translateY(70%);
+    }
+    100% {
+        opacity: 1;
+        -webkit-transform: translateY(0%);
+    }
+}
+@media screen and (max-width: 768px) {
+    .col-sm-4 {
+        text-align: center;
+        margin: 25px 0;
+        align-self: center;
+        background-color: #888888;
+    }
+    .btn-lg {
+        width: 50%;
+        margin-bottom: 35px;
+    }
+}
+@media screen and (max-width: 480px) {
+    .logo {
+        font-size: 150px;
+    }
+}
