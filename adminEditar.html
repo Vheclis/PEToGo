@@ -70,42 +70,53 @@
                     style="font-size: large; color: white; ">Editar informações</span></button>
 
         </div>
-        <div class="div-blue-box" style="display: flex; flex-direction: row">
+        <div class="div-blue-box col-sm-9">
+            <div>
+                <input type="search" placeholder="ID"
+                       style="width: 60%; color: black; border-radius: 7px">
+                <select style="color: black; height: 30px; font-size: large; border-radius: 7px; font-weight: bold">
+                    <option value="administradores">Administradores</option>
+                    <option value="clientes">Clientes</option>
+                    <option value="produtos">Produtos</option>
+                    <option value="agenda">Agenda</option>
+                </select>
+                <button class="btn" style="margin-left: 5px">Pesquisar!</button>
+            </div>
+
             <ul style="width: 100%">
-                <li><h2>Cadastro de Administradores</h2></li>
+                <li><h2>Editar Administradores</h2></li>
                 <li>
                     <div class="div-signIn">
                         <form>
                             <div class="div-field">
                                 Nome:
-                                <input type="text" placeholder="Nome completo">
+                                <input type="text" placeholder="Gabriel Henrique Campos Scalici">
                             </div>
                             <div class="div-field">
                                 User:
-                                <input type="text" placeholder="Senha para LogIn">
+                                <input type="text" placeholder="Gabriel_Scalici">
                             </div>
                             <div class="div-field">
                                 Senha:
-                                <input type="password" placeholder="Senha para LogIn">
+                                <input type="password" placeholder="123456789">
                             </div>
                             <div class="div-field">
                                 Telefone:
-                                <input type="text" placeholder="(00)0000-0000">
+                                <input type="text" placeholder="(11)99714-6339">
                             </div>
                             <div class="div-field">
                                 Email:
-                                <input type="text" placeholder="exemplo@usp.br">
+                                <input type="text" placeholder="gabriel.scalici@usp.br">
                             </div>
                             <button class="btn" style="background-color: darkblue; width: 40%; margin-top: 10px"><span
-                                style="font-size: large; color: white; margin-top: 5px">Enviar Foto</span></button>
+                                style="font-size: large; color: white; margin-top: 5px">Trocar Foto</span></button>
                             <button class="btn"
                                     style="background-color: darkblue; width: 40%; margin-top: 10px; float: right"><span
-                                style="font-size: large; color: white; margin-top: 5px">Cadastrar</span></button>
+                                style="font-size: large; color: white; margin-top: 5px">Salvar</span></button>
                         </form>
                     </div>
                 </li>
             </ul>
-        </div>
 
     </div>
 </div>
