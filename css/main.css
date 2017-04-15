@@ -116,11 +116,11 @@ h4 {
 .jumbotron {
     background-color: lightskyblue;
     color: #fff;
-    padding: 50px 25px;
+    padding: 50px 10px;
     text-align: center;
     width: 100%;
     margin: 0px;
-    
+    display: block;
     font-family: Montserrat, sans-serif;
 
     position: relative;
@@ -333,4 +333,21 @@ span {
 {
     width: 75%;
     display: inline;
+}
+
+footer {
+    text-align: center;
+    font-size: smaller;
+    background-color: #303030;
+    color: ghostwhite;
+    width: 95%;
+    border: 2px solid black;
+    border-radius: 8px;
+    margin-top: 20px;
+    padding: 10px 5px;
+
+}
+
+footer a {
+    color: ghostwhite;
 }
