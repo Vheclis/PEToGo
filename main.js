@@ -22,7 +22,7 @@ function init()
             type: "GET",
             datatype: 'HTML',
             success: function (response) {
-                $('#user-content').html(response);
+                $('#userBox').html(response);
             },
             error: function (erro)
             {
@@ -66,7 +66,7 @@ function login()
 
     if(user == "Nilson" & password == '1234')
     {
-        document.getElementById('navName').innerHTML = NILSON;
+        document.getElementById('navName').innerHTML = "NILSON";
         user = 1;
         $.ajax
         ({
@@ -74,7 +74,7 @@ function login()
             type: "GET",
             datatype: 'HTML',
             success: function (response) {
-                $('#user-content').html(response);
+                $('#userBox').html(response);
             },
             error: function (erro)
             {
@@ -86,7 +86,7 @@ function login()
 
     if(user == "Jeff" & password == '1234')
     {
-        document.getElementById('navName').innerHTML = JEFF;
+        document.getElementById('navName').innerHTML = "JEFF";
         user = 2;
         $.ajax
         ({
@@ -94,7 +94,7 @@ function login()
             type: "GET",
             datatype: 'HTML',
             success: function (response) {
-                $('#user-content').html(response);
+                $('#userBox').html(response);
             },
             error: function (erro)
             {
