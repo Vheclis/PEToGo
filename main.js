@@ -2,11 +2,13 @@ $('a').on('click', function (e) {
     e.preventDefault();
     var pageRef = $(this).attr('href');
 
-    callPageA(pageRef);
+    callPage(pageRef);
 })
 
 
-function callPageA(pageReference) {
+
+
+function callPage(pageReference) {
     $.ajax
     ({
         url: pageReference,
