@@ -1,37 +1,50 @@
-var user = 0;  /*Login é escolhido como padrão*/
-
 
 function init()
 {
-    $.ajax
+
+    var auxUrl;
+    auxUrl = getCookie("page");
+    if(auxUrl == "")
+    {
+        auxUrl = 'home.html';
+    }
+   /*Login é escolhido como padrão*/
+   $.ajax
     ({
-        url: 'home.html',
+        url: auxUrl,
         type: "GET",
         datatype: 'HTML',
         success: function (response) {
             $('#contentBox').html(response);
         },
-        error : function (error) {
+        error: function (error) {
             console.log('the page was not loaded')
         }
     })
 
+    if (getCookie("user") == 1)
+    {
+        auxUrl = 'loginClient.html'
+    }
+    else if (getCookie("user") == 2)
+    {
+        auxUrl = 'loginAdmin.html'
+    }
+    else
+    {
+        auxUrl = 'loginDefault.html'
+    }
     $.ajax
-        ({
-            url: 'loginDefault.html',
-            type: "GET",
-            datatype: 'HTML',
-            success: function (response) {
-                $('#userBox').html(response);
-            },
-            error: function (erro)
-            {
-                console.log("the user was not loaded")
-            }
-
-        })
-
-
+    ({
+        url: auxUrl,
+        type: "GET",
+        datatype: 'HTML',
+        success: function (response) {
+            $('#userBox').html(response);
+        },
+        error: function (erro) {
+            console.log("the user was not loaded")
+        }})
 }
 
 $('a').on('click', function (e) {
@@ -42,9 +55,27 @@ $('a').on('click', function (e) {
 })
 
 
+function getCookie(fname)
+{
+    var name = fname + "=";
+    var decodedCookie = decodeURIComponent(document.cookie);
+    var ca = decodedCookie.split(';');
+    for(var i = 0; i <ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0) == ' ') {
+            c = c.substring(1);
+        }
+        if (c.indexOf(name) == 0) {
+            return c.substring(name.length, c.length);
+        }
+    }
+    return "";
 
+}
 
 function callPage(pageReference) {
+    document.cookie = "page="+pageReference;
+
     $.ajax
     ({
         url: pageReference,
@@ -61,13 +92,15 @@ function callPage(pageReference) {
 
 function login()
 {
+
     var user = document.getElementById('userName').value;
     var password = document.getElementById('userPass').value;
 
     if(user == "Nilson" & password == '1234')
     {
         document.getElementById('navName').innerHTML = "NILSON";
-        user = 1;
+        document.cookie = "user=1";
+
         $.ajax
         ({
             url: 'loginClient.html',
@@ -87,7 +120,8 @@ function login()
     if(user == "Jeff" & password == '1234')
     {
         document.getElementById('navName').innerHTML = "JEFF";
-        user = 2;
+        document.cookie = "user=2";
+
         $.ajax
         ({
             url: 'loginAdmin.html',
@@ -104,4 +138,22 @@ function login()
         })
     }
 
+}
+
+function logoff()
+{
+    document.cookie = "user=0";
+
+    $.ajax
+    ({
+        url: 'loginDefault.html',
+        type: "GET",
+        datatype: 'HTML',
+        success: function (response) {
+            $('#userBox').html(response);
+        },
+        error: function (erro) {
+            console.log("the user was not logged off")
+        }
+    })
 }
