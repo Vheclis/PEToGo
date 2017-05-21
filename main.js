@@ -20,7 +20,7 @@ function init()
         error: function (error) {
             console.log('the page was not loaded')
         }
-    })
+    });
 
     if (getCookie("user") == 1)
     {
@@ -143,17 +143,6 @@ function login()
 function logoff()
 {
     document.cookie = "user=0";
-
-    $.ajax
-    ({
-        url: 'loginDefault.html',
-        type: "GET",
-        datatype: 'HTML',
-        success: function (response) {
-            $('#userBox').html(response);
-        },
-        error: function (erro) {
-            console.log("the user was not logged off")
-        }
-    })
+    document.cookie = "page=home.html"
+    init();
 }

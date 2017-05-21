@@ -5,7 +5,15 @@ body {
 
 
 }
- 
+
+.fileUpload
+{
+    color: ghostwhite;
+    width: 50%;
+}
+
+.fileUpload:hover{}
+
 /* Begin calendar*/
 .month {
     padding: 70px 25px;
@@ -125,7 +133,7 @@ h4 {
 
     position: relative;
     left: -10px;
-    
+
 
 }
 .container-fluid {
@@ -262,7 +270,7 @@ span {
 }
 
 .navbar {
-    
+
     background-color: lightskyblue;
     z-index: 9999;
     border: 0;
@@ -271,9 +279,9 @@ span {
     letter-spacing: 4px;
     border-radius: 0;
     font-family: Montserrat, sans-serif;
-    flex-direction: right;
+    flex-direction: row;
     display: block;
-    
+
 
 }
 
@@ -291,7 +299,7 @@ span {
     display: inline-flex;
     float: right;
     padding: 10px;
-    margin-top: : 0px;
+    margin-top: 0px;
 
     text-decoration: none;
 }
