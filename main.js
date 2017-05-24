@@ -1,4 +1,24 @@
-var request = require('request');
+function postForm(formId) {
+	var data = {
+		'id' : formId,
+		'query' : $(formId).serializeObject()
+	};
+
+	$.post("post", data, function(data, status) {
+		console.log("success");
+	});
+}
+
+function getForm(formId) {
+	var data = {
+		'id' : formId,
+		'query' : $(formId).serializeObject()
+	};
+
+	$.post("get", data, function(data, status) {
+		console.log("success");
+	});
+}
 
 function init()
 {
@@ -96,8 +116,6 @@ function login()
 
     var user = document.getElementById('userName').value;
     var password = document.getElementById('userPass').value;
-
-    request.post('localhost:8001').form({key:'value'});
 
     if(user == "Nilson" & password == '1234')
     {

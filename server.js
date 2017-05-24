@@ -9,12 +9,11 @@ app.get('/', function (req, res) {
 })
 
 app.post('/*', function (req, res) {
-	console.log(req);
 	res.send('ok');
 })
 
 app.use(express.static(__dirname + '/'));
 
 app.listen(8001, function () {
-	console.log('Example app listening on port 8001!');
+	console.log('Serving at ' + port);
 })

@@ -1,10 +1,10 @@
 <div style="display: inline-block;padding: 0px 0px">
     <h2>LOGIN</h2>
-    <form action="/login" method="post">
-        <input name="userName" id="userName" type="text" class="form-control" style="width: 100%" placeholder="Usuário" required/>
+    <form id="formLogin">
+        <input name="user.username" id="userName" type="text" class="form-control" style="width: 100%" placeholder="Usuário" required/>
         <div style="width: 100%; display: inline-flex; margin: 5px 0px 0px 0px">
-            <input name="userPass" id="userPass" type="password" class="form-control" placeholder="Senha" required/>
-            <button type="submit" onclick="login()" class="btn" style="margin: 0px 0px 0px 5px">Entrar</button>
+            <input name="user.pass" id="userPass" type="password" class="form-control" placeholder="Senha" required/>
+            <button type="button" onclick="postForm('#formLogin', 'user')" class="btn" style="margin: 0px 0px 0px 5px">Entrar</button>
         </div>
     </form>
 </div>
