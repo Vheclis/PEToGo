@@ -1,3 +1,25 @@
+function postForm(formId, url) {
+	var data = {
+		'id' : formId,
+		'body' : $(formId).serializeObject()
+	};
+
+	$.post(url, data, function(data, status) {
+		console.log("success");
+	});
+}
+
+function getForm(formId, url) {
+	var data = {
+		'id' : formId,
+		'body' : $(formId).serializeObject()
+	};
+
+	$.post(url, data, function(data, status) {
+		console.log("success");
+	});
+}
+
 function init()
 {
 
