@@ -8,7 +8,11 @@ app.get('/', function (req, res) {
 	res.redirect('/index.html');
 })
 
-app.post('/*', function (req, res) {
+app.post('/login', function (req, res) {
+	res.send('ok');
+})
+
+app.get('/form', function (req, res) {
 	res.send('ok');
 })
 

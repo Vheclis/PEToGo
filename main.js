@@ -1,21 +1,21 @@
-function postForm(formId) {
+function postForm(formId, url) {
 	var data = {
 		'id' : formId,
-		'query' : $(formId).serializeObject()
+		'body' : $(formId).serializeObject()
 	};
 
-	$.post("post", data, function(data, status) {
+	$.post(url, data, function(data, status) {
 		console.log("success");
 	});
 }
 
-function getForm(formId) {
+function getForm(formId, url) {
 	var data = {
 		'id' : formId,
-		'query' : $(formId).serializeObject()
+		'body' : $(formId).serializeObject()
 	};
 
-	$.post("get", data, function(data, status) {
+	$.post(url, data, function(data, status) {
 		console.log("success");
 	});
 }
