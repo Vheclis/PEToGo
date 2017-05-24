@@ -1,3 +1,4 @@
+var request = require('request');
 
 function init()
 {
@@ -95,6 +96,8 @@ function login()
 
     var user = document.getElementById('userName').value;
     var password = document.getElementById('userPass').value;
+
+    request.post('localhost:8001').form({key:'value'});
 
     if(user == "Nilson" & password == '1234')
     {

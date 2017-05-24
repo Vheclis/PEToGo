@@ -1,0 +1,20 @@
+const port = 8001
+
+var express = require('express')
+var app = express()
+
+// respond with "hello world" when a GET request is made to the homepage
+app.get('/', function (req, res) {
+	res.redirect('/index.html');
+})
+
+app.post('/*', function (req, res) {
+	console.log(req);
+	res.send('ok');
+})
+
+app.use(express.static(__dirname + '/'));
+
+app.listen(8001, function () {
+	console.log('Example app listening on port 8001!');
+})
