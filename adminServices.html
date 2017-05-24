@@ -54,7 +54,7 @@
             </div>
 
             <div class="col-sm-6">
-                <select style="color: black; width: 50%; font-size: large; border-radius: 7px; font-weight: bold">
+                <select id="selectAdminServices" style="color: black; width: 50%; font-size: large; border-radius: 7px; font-weight: bold">
                     <option value="tosa">Tosa</option>
                     <option value="banho">Banho</option>
                     <option value="passeio">Passeio</option>
@@ -71,87 +71,14 @@
                     </table>
                     <td>
                         <div style="width: 100%; height: 250px; overflow: auto">
-                            <table cellspacing="0" cellpadding="0" style="border: 1px solid black; width: 100%">
-                                <tr>
-                                    <td style="width: 10%"><input type="checkbox" style="margin-left: 50%"></td>
-                                    <td>8:00</td>
-                                    <td>Sim</td>
-                                    <td>$ 300,00</td>
-
-                                </tr>
-                                <tr>
-                                    <td style="width: 10%"><input type="checkbox" style="margin-left: 50%"></td>
-                                    <td>9:00</td>
-                                    <td>Não</td>
-                                    <td>$ -</td>
-                                </tr>
-                                <tr>
-                                    <td style="width: 10%"><input type="checkbox" style="margin-left: 50%"></td>
-                                    <td>9:30</td>
-                                    <td>Não</td>
-                                    <td>$ -</td>
-                                </tr>
-                                <tr>
-                                    <td style="width: 10%"><input type="checkbox" style="margin-left: 50%"></td>
-                                    <td>10:00</td>
-                                    <td>Não</td>
-                                    <td>$ -</td>
-                                </tr>
-                                <tr>
-                                    <td style="width: 10%"><input type="checkbox" style="margin-left: 50%"></td>
-                                    <td>10:30</td>
-                                    <td>Sim</td>
-                                    <td>$ 300,00</td>
-                                </tr>
-                                <tr>
-                                    <td style="width: 10%"><input type="checkbox" style="margin-left: 50%"></td>
-                                    <td>11:00</td>
-                                    <td>Sim</td>
-                                    <td>$ 300,00</td>
-                                </tr>
-                                <tr>
-                                    <td style="width: 10%"><input type="checkbox" style="margin-left: 50%"></td>
-                                    <td>11:30</td>
-                                    <td>Não</td>
-                                    <td>$ -</td>
-                                </tr>
-                                <tr>
-                                    <td style="width: 10%"><input type="checkbox" style="margin-left: 50%"></td>
-                                    <td>12:00</td>
-                                    <td>Não</td>
-                                    <td>$ -</td>
-                                </tr>
-                                <tr>
-                                    <td style="width: 10%"><input type="checkbox" style="margin-left: 50%"></td>
-                                    <td>12:30</td>
-                                    <td>Sim</td>
-                                    <td>$ 300,00</td>
-                                </tr>
-                                <tr>
-                                    <td style="width: 10%"><input type="checkbox" style="margin-left: 50%"></td>
-                                    <td>14:00</td>
-                                    <td>Não</td>
-                                    <td>$ -</td>
-                                </tr>
-                                <tr>
-                                    <td style="width: 10%"><input type="checkbox" style="margin-left: 50%"></td>
-                                    <td>14:30</td>
-                                    <td>Sim</td>
-                                    <td>$ 300,00</td>
-                                </tr>
-                                <tr>
-                                    <td style="width: 10%"><input type="checkbox" style="margin-left: 50%"></td>
-                                    <td>15:00</td>
-                                    <td>Não</td>
-                                    <td>$ - </td>
-                                </tr>
+                            <table id="tableAdminServices" cellspacing="0" cellpadding="0" style="border: 1px solid black; width: 100%">
                                 <tr>
                                     <td style="width: 10%"><input type="checkbox" style="margin-left: 50%"></td>
                                     <td>15:30</td>
                                     <td>Sim</td>
                                     <td>$ 300,00</td>
                                 </tr>
-
+                                <!--Aqui deve ser colocado os dados conseguidos através de um AJAX -->
 
                             </table>
 
@@ -164,14 +91,14 @@
                 style="font-size: large; color: white; ">Remover Serviço</span></button>
 
                 <div class="div-signIn">
-                        <form>
+                        <form id="formAdminServices">
                             <div class="div-field">
                                 Hora:
-                                <input type="text" placeholder="00:00"/>
+                                <input name="hour" type="text" placeholder="00:00"/>
                             </div>
                             <div class="div-field">
                                 Preço:
-                                <input type="text" placeholder="$ 000,00"/>
+                                <input name="price" type="text" placeholder="$ 000,00"/>
                             </div>
                             <button class="btn" style="background-color: darkblue; width: 100%; margin-top: 10px"><span
                                 style="font-size: large; color: white; margin-top: 5px">Registrar Serviço</span></button>

@@ -1,7 +1,7 @@
             <div>
-                <input type="search" placeholder="ID"
+                <input id="searchAdminEdit" type="search" placeholder="ID"
                        style="width: 60%; color: black; border-radius: 7px"/>
-                <select style="color: black; height: 30px; font-size: large; border-radius: 7px; font-weight: bold">
+                <select id="selectAdminEdit" style="color: black; height: 30px; font-size: large; border-radius: 7px; font-weight: bold">
                     <option value="administradores">Administradores</option>
                     <option value="clientes">Clientes</option>
                     <option value="produtos">Produtos</option>
@@ -11,37 +11,11 @@
             </div>
 
             <ul style="width: 100%">
-                <li><h2>Editar Administradores</h2></li>
+                <li><h2 id="headerAdminEditar">Editar Administradores</h2></li> <!-- O QUE VAI DENTRO DESSE h2 DEPENDE DO QUE ESTÁ SELECIONADO NO "selectEdit", Administradores está como padrão-->
                 <li>
                     <div class="div-signIn">
-                        <form>
-                            <div class="div-field">
-                                Nome:
-                                <input type="text" placeholder="Gabriel Henrique Campos Scalici"/>
-                            </div>
-                            <div class="div-field">
-                                User:
-                                <input type="text" placeholder="Gabriel_Scalici"/>
-                            </div>
-                            <div class="div-field">
-                                Senha:
-                                <input type="password" placeholder="123456789"/>
-                            </div>
-                            <div class="div-field">
-                                Telefone:
-                                <input type="text" placeholder="(11)99714-6339"/>
-                            </div>
-                            <div class="div-field">
-                                Email:
-                                <input type="text" placeholder="gabriel.scalici@usp.br"/>
-                            </div>
-                            <div class="div-field">
-                                <span >Foto: </span>
-                                <input type="file" style="color: ghostwhite;  width: 50%; float: left"/>
-                            </div>
-                            <button class="btn"
-                                    style="background-color: darkblue; width: 40%; margin-top: 10px; float: right"><span
-                                style="font-size: large; color: white; margin-top: 5px">Salvar</span></button>
+                        <form id="formAdminEdit"> <!-- O QUE VAI DENTRO DESSE FORM DEPENDE DO QUE ESTÁ SELECIONADO NO "selectEdit"-->
+                            
                         </form>
                     </div>
                 </li>
