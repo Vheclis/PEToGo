@@ -89,9 +89,7 @@ function callPage(pageReference) {
     })
 }
 
-function login()
-{
-
+function login() {
     let user = document.getElementById('userName').value;
     let password = document.getElementById('userPass').value;
 

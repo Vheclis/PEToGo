@@ -2,7 +2,7 @@
     <li><h2>Cadastro de PET</h2></li>
     <li>
         <div class="div-signIn">
-            <form id="formCreatePET">
+            <form id="formCreatePET" action="/insert" method="POST">
                 <div class="div-field">
                     Nome:
                     <input name="name" type="text" placeholder="Rex"/>
@@ -21,7 +21,7 @@
                     <input name="photo" type="file" style="color: ghostwhite;  width: 50%; float: left"/>
                 </div>
 
-                <button class="btn"
+                <button class="btn" onclick="sendForm('#formCreatePET')" 
                 style="background-color: darkblue; width: 40%; margin-top: 10px; float: right"><span
                 style="font-size: large; color: white; margin-top: 5px">Cadastrar</span></button>
             </form>

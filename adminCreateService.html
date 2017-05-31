@@ -2,7 +2,7 @@
                 <li><h2>Cadastro de Serviço</h2></li>
                 <li>
                     <div class="div-signIn">
-                        <form id="formAdminCreateService">
+                        <form id="formAdminCreateService" action="/insert" method="POST">
                             <div class="div-field">
                                 Serviço:
                                 <input name="name" type="text" placeholder="Nome completo"/>
@@ -24,7 +24,7 @@
                             <textarea name="shortDescription" rows="5" cols="50" style="margin: 5px; float: right">Digite aqui uma descrição curta do serviço</textarea>
 
 
-                            <button class="btn"
+                            <button class="btn" onclick="sendForm('#formAdminCreateService')" 
                                     style="background-color: darkblue; width: 40%; margin-top: 10px; float: right"><span
                                 style="font-size: large; color: white; margin-top: 5px">Cadastrar</span></button>
                         </form>

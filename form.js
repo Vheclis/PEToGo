@@ -17,7 +17,7 @@ function sendForm(formId) {
 		type: method,
 		url: action,
 		data: data,
-		dataType : 'html',
+		dataType : type,
 		success: function (response) {
 			console.log('success');
 			if(callback != undefined) {
@@ -36,3 +36,4 @@ function sendForm(formId) {
 		}
 	});
 }
+
