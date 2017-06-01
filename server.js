@@ -18,7 +18,7 @@ app.get('/', function (req, res) {
 })
 
 var verifyUndefined = function(req, res, next) {
-	if(req.body == undefined || req.body.message == undefined) {
+	if(req.body == undefined) {
 		console.log('Bad request');
 		res.status(400).send('Bad request');
 	} else {
@@ -27,10 +27,6 @@ var verifyUndefined = function(req, res, next) {
 	}
 }
 
-var users = {
-	'Jeff' : { 'password' : '123', 'type' : 'admin' },
-	'Nirto' : { 'password' : '1234', 'type' : 'client' }
-}
 app.post('/login', verifyUndefined, function (req, res) {
 	//let user = req.body.message.user;
 	////console.log(user);
@@ -50,7 +46,7 @@ app.post('/login', verifyUndefined, function (req, res) {
 	//	console.log('User not found');
 	//	res.sendFile(path.join(__dirname + '/loginDefault.html'));
 	//}
-	db.search('user', req.body.message.user, function(result) {
+	db.search('user', req.body.user, function(result) {
 		if (result.isError) {
 			console.log('/login error');
 			res.status(400).send("User not found");
@@ -69,7 +65,7 @@ app.post('/login', verifyUndefined, function (req, res) {
 })
 
 app.get('/search', verifyUndefined, function (req, res) {
-	let data = req.body.message;
+	let data = req.body;
 	db.search(Object.keys(data)[0], data, function(result) {
 		if (result.isError) {
 			console.log('/search error');
@@ -83,7 +79,7 @@ app.get('/search', verifyUndefined, function (req, res) {
 })
 
 app.post('/insert', verifyUndefined, function (req, res) {
-	let data = req.body.message;
+	let data = req.body;
 	console.log(data);
 	db.insert(Object.keys(data)[0], data, function(result) {
 		if (result.isError) {
@@ -98,7 +94,7 @@ app.post('/insert', verifyUndefined, function (req, res) {
 })
 
 app.put('/update', verifyUndefined, function (req, res) {
-	let data = req.body.message;
+	let data = req.body;
 	db.update(Object.keys(data)[0], data, function(result) {
 		if (result.isError) {
 			console.log('error');
@@ -113,7 +109,7 @@ app.put('/update', verifyUndefined, function (req, res) {
 
 
 app.delete('/remove', verifyUndefined, function (req, res) {
-	let data = req.body.message;
+	let data = req.body;
 	db.remove(Object.keys(data)[0], data, function(result) {
 		if (result.isError) {
 			console.log('error');
