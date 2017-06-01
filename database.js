@@ -12,6 +12,7 @@ var newTable = function(key, autoID) {
 	this.autoID = autoID;
 	this.id = 0;
 	this.key = key;
+
 	this.search = function (query) {
 		let result = {
 			'data' : [],
@@ -23,9 +24,16 @@ var newTable = function(key, autoID) {
 			return tupleMatches(query, tuple);
 		});
 
+		console.log('search db result: ');
+		for(var i = 0; i < result.data.length; i++) {
+			console.log(result.data[i]);
+		}
+		console.log('end search db');
+
 		if (result.data.length == 0) {
 			result.isError = true;
 			result.message = 'No tuples found';
+			console.log("No tuple found");
 		}
 		return result;
 	}
@@ -38,6 +46,7 @@ var newTable = function(key, autoID) {
 		};
 
 		if (this.autoID) {
+			console.log('autoid');
 			newtuple[this.key] = this.id;
 			this.id++;
 		}
@@ -114,31 +123,34 @@ var newTable = function(key, autoID) {
 }
 
 let Base = {
-	'user' : newTable('username', false),
-	'pet' : newTable(id, true),
-	'service' : newTable(id, true),
-	'product' : newTable(id, true),
-	'schedule' : newTable(id, true)
+	'pet' : newTable('id', true),
+	'service' : newTable('id', true),
+	'product' : newTable('id', true),
+	'schedule' : newTable('id', true),
+	'user' : newTable('username', false)
 }
 
+Base.user.insert({ 'username' : 'Jeff', 'password' : '123', 'type' : 'admin' });
+Base.user.insert({ 'username' : 'Nilson', 'password' : '1234', 'type' : 'client' });
+
 exports.search = function(table, data, callback) {
-	let result = Base[table].search(data[table]);
+	let result = Base[table].search(data);
 	callback(result);
 }
 
 exports.insert = function(table, data, callback) {
-	let result = Base[table].insert(data[table]);
+	let result = Base[table].insert(data);
 	console.log('result');
 	console.log(result);
 	callback(result);
 }
 
 exports.update = function(table, data, callback) {
-	let result = Base[table].update(data[table]);
+	let result = Base[table].update(data);
 	callback(result);
 }
 
 exports.remove = function(table, data, callback) {
-	let result = Base[table].remove(data[table]);
+	let result = Base[table].remove(data);
 	callback(result);
 }
