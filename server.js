@@ -64,9 +64,11 @@ app.post('/login', verifyUndefined, function (req, res) {
 	});
 })
 
-app.get('/search', verifyUndefined, function (req, res) {
-	let data = req.body;
-	db.search(Object.keys(data)[0], data, function(result) {
+app.get('/search/*', verifyUndefined, function (req, res) {
+	let param = req.params;
+	let data = JSON.parse(param[0]); 
+	let bd = Object.keys(data)[0];
+	db.search(bd, data[bd], function(result) {
 		if (result.isError) {
 			console.log('/search error');
 			res.status(400).send(result.data);

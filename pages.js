@@ -1,6 +1,7 @@
-let pageManager = SinglePageManager('index.html', '404.html');
+let pageManager = new SinglePageManager('index.html', '404.html');
 
 $(document).ready(function() {
+	pageManager.init();
 	pageManager.bindFormSubmit();
 	pageManager.bindARef('#contentBox');
 	pageManager.addPage('home.html');
@@ -23,7 +24,29 @@ pageManager.addFormCallback('formLogin', function(err, response) {
 pageManager.addPage('home.html');
 pageManager.addPage('carrinho.html');
 pageManager.addPage('estoque.html');
-pageManager.addPage('store.html');
+pageManager.addPage('storeLine.html', ['name', 'shortDescription', 'price']);
+pageManager.addPage('store.html', [], function (pageContent, data) {
+	$.ajax ({
+		url: "/search/{'product':{}}".replace(/['"]/g, "%22"),
+		type: "GET",
+		datatype: 'HTML',
+		success: function (data) {
+			let productList = pageContent.find('#productList');
+			let itemLine;
+			let item;
+			for(var i = 0; i < data.length; i++) {
+				item = data[i];
+				//console.log(item);
+				itemLine = $('<li/>').attr('id', 'product'+i);
+				productList.append(itemLine);
+				pageManager.renderIn(pageContent, '#product'+i, 'storeLine.html', item);
+			}
+			console.log(pageContent);
+		},
+		error: function (error){
+		}
+	})
+});
 pageManager.addPage('schedulePET.html');
 //'adminCreateAdmin.html'
 //'adminCreateClient.html'
@@ -45,7 +68,7 @@ pageManager.addPage('schedulePET.html');
 //'petClient.html'
 //'schedulePET.html'
 //'store.html'
-//'storeProduct.html'
+//'storeLine.html'
 function callPage(pageReference) {
     document.cookie = "page="+pageReference;
 

@@ -1,147 +1,165 @@
 var tupleMatches = function (query, tup) {
 	for(var k in query) {
 		if(query[k] != tup[k]) {
+			console.log("tuple matches false");
 			return false;
 		}
 	}
 	return true;
 }
 
-var newTable = function(key, autoID) {
+function Table(key, autoId) {
 	this.data = [];
-	this.autoID = autoID;
+	this.autoId = autoId;
 	this.id = 0;
 	this.key = key;
+}
+Table.prototype.print = function () {
+	console.log(this.autoId);
+}
 
-	this.search = function (query) {
-		let result = {
-			'data' : [],
-			'message' : 'ok',
-			'isError' : false
-		};
+Table.prototype.search = function (query) {
+	let result = {
+		'data' : [],
+		'message' : 'ok',
+		'isError' : false
+	};
 
-		result.data = this.data.filter(function(tuple) {
+	result.data = this.data.filter(function(tuple) {
+		return tupleMatches(query, tuple);
+	});
+
+	//console.log('search db result: ');
+	for(var i = 0; i < result.data.length; i++) {
+		console.log(result.data[i]);
+	}
+	//console.log('end search db');
+
+	if (result.data.length == 0) {
+		result.isError = true;
+		result.message = 'No tuples found';
+		console.log("No tuple found");
+	}
+	return result;
+}
+
+Table.prototype.insert = function (newtuple) {
+	let result = {
+		'data' : [],
+		'message' : 'ok',
+		'isError' : false
+	};
+
+	if (this.autoId) {
+		newtuple[this.key] = this.id;
+		this.id++;
+	}
+
+	self = this;
+
+	if (newtuple[this.key] != undefined) {
+		let array = this.data.filter(function(tuple) {
+			return tuple[self.key] == newtuple[self.key];
+		});
+
+		if(array.length == 0) {
+			self.data.push(newtuple);
+			return result;
+		} else {
+			result.isError = true;
+			result.message = 'Cannot repeat key';
+			return result;
+		}
+	} else {
+		result.isError = true;
+		result.message = 'Key not defined';
+		return result;
+
+	}
+}
+
+Table.prototype.update = function (tuple) {
+	let result = {
+		'data' : [],
+		'message' : 'ok',
+		'isError' : false
+	};
+
+	if (tuple[this.key] != undefined) {
+		let array = this.data.filter(function(tuple) {
 			return tupleMatches(query, tuple);
 		});
 
-		console.log('search db result: ');
-		for(var i = 0; i < result.data.length; i++) {
-			console.log(result.data[i]);
-		}
-		console.log('end search db');
-
-		if (result.data.length == 0) {
+		if(array.length == 0) {
 			result.isError = true;
-			result.message = 'No tuples found';
-			console.log("No tuple found");
-		}
-		return result;
-	}
-
-	this.insert = function (newtuple) {
-		let result = {
-			'data' : [],
-			'message' : 'ok',
-			'isError' : false
-		};
-
-		if (this.autoID) {
-			console.log('autoid');
-			newtuple[this.key] = this.id;
-			this.id++;
-		}
-
-		if (newtuple[this.key] != undefined) {
-			let array = this.data.filter(function(tuple) {
-				return tuple[this.key] == newtuple[this.key];
-			});
-
-			if(array.length == 0) {
-				data.push (newtuple);
-				return result;
-			} else {
-				result.isError = true;
-				result.message = 'Cannot repeat key';
-				return result;
-			}
+			result.message = 'Tuple not found';
+			return result;
+		} else if (array.length > 1) {
+			result.isError = true;
+			result.message = 'Something wrong...';
+			return result;
 		} else {
-			result.isError = true;
-			result.message = 'Key not defined';
-			return result;
-
-		}
-	}
-
-	this.update = function (tuple) {
-		let result = {
-			'data' : [],
-			'message' : 'ok',
-			'isError' : false
-		};
-
-		if (tuple[this.key] != undefined) {
-			let array = this.data.filter(function(tuple) {
-				return tupleMatches(query, tuple);
+			tuple 
+			tuple.forEach(function(value, key, item) {
+				array[0][key] = value;
 			});
-
-			if(array.length == 0) {
-				result.isError = true;
-				result.message = 'Tuple not found';
-				return result;
-			} else if (array.length > 1) {
-				result.isError = true;
-				result.message = 'Something wrong...';
-				return result;
-			} else {
-				tuple 
-				tuple.forEach(function(value, key, item) {
-					array[0][key] = value;
-				});
-				return result;
-			}
-		}
-	}
-
-	this.remove = function (user) {
-		let result = {
-			'data' : [],
-			'message' : 'ok',
-			'isError' : false
-		};
-		let prevLength = data.length;
-		data = this.data.filter(function(tuple) {
-			return !tupleMatches(query, tuple);
-		});
-		if (data.length == data.length) {
-			result.message = 'Nothing deleted';
-			result.isError = true;
 			return result;
 		}
+	}
+}
+
+Table.prototype.remove = function (user) {
+	let result = {
+		'data' : [],
+		'message' : 'ok',
+		'isError' : false
+	};
+	let prevLength = data.length;
+	data = this.data.filter(function(tuple) {
+		return !tupleMatches(query, tuple);
+	});
+	if (data.length == data.length) {
+		result.message = 'Nothing deleted';
+		result.isError = true;
 		return result;
 	}
-	return this;
+	return result;
 }
+
+new Table('id', true)
+new Table('id', true)
+new Table('id', true)
+new Table('username', false)
+new Table('id', true)
 
 let Base = {
-	'pet' : newTable('id', true),
-	'service' : newTable('id', true),
-	'product' : newTable('id', true),
-	'schedule' : newTable('id', true),
-	'user' : newTable('username', false)
+	'pet' : new Table('id', true),
+	'service' : new Table('id', true),
+	'product' : new Table('id', true),
+	'user' : new Table('username', false),
+	'schedule' : new Table('id', true) 
 }
+
+//console.log(Base.pet.autoId);
+//console.log(Base.service.autoId);
+//console.log(Base.product.autoId);
+//console.log(Base.user.autoId);
+//console.log(Base.schedule.autoId);
 
 Base.user.insert({ 'username' : 'Jeff', 'password' : '123', 'type' : 'admin' });
 Base.user.insert({ 'username' : 'Nilson', 'password' : '1234', 'type' : 'client' });
+Base.product.insert({'name' : 'whiskas', 'shortDescription' : 'Ração para gatos', 'price' : 49.90});
+Base.product.insert({'name' : 'pedrigree', 'shortDescription' : 'Ração para doggos', 'price' : 59.90});
+Base.product.insert({'name' : 'dogshow', 'shortDescription' : 'Ração para doggos shows', 'price' : 109.90});
 
 exports.search = function(table, data, callback) {
+	console.log("search "+ table);
 	let result = Base[table].search(data);
 	callback(result);
 }
 
 exports.insert = function(table, data, callback) {
 	let result = Base[table].insert(data);
-	console.log('result');
-	console.log(result);
 	callback(result);
 }
 
