@@ -28,38 +28,14 @@ var verifyUndefined = function(req, res, next) {
 }
 
 app.post('/login', verifyUndefined, function (req, res) {
-	//let user = req.body.message.user;
-	////console.log(user);
-	////console.log(users[user.username]);
-	//if(users[user.username] != undefined && 
-	//   users[user.username].password == user.password)
-	//{
-	//	if(users[user.username].type == 'admin') {
-	//		console.log('admin');
-	//		res.sendFile(path.join(__dirname + '/loginAdmin.html'));
-	//	} else {
-	//		console.log('client');
-	//		res.sendFile(path.join(__dirname + '/loginClient.html'));
-	//	}
-
-	//} else {
-	//	console.log('User not found');
-	//	res.sendFile(path.join(__dirname + '/loginDefault.html'));
-	//}
 	db.search('user', req.body.user, function(result) {
 		if (result.isError) {
 			console.log('/login error');
 			res.status(400).send("User not found");
-			//res.sendFile(path.join(__dirname + '/loginDefault.html'));
 		} else {
 			console.log('/login success');
 			let user = result.data[0];
 			res.json(user);
-			//if(user.type == 'admin') {
-				//res.sendFile(path.join(__dirname + '/loginClient.html'));
-			//} else {
-				//res.sendFile(path.join(__dirname + '/loginAdmin.html'));
-			//}
 		}
 	});
 })

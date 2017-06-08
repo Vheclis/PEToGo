@@ -1,31 +1,31 @@
 <img id="adminPhoto" src="img/profile-placeholder.png"
 style="width: 100px; height: 100px; border: solid 10px goldenrod; border-radius: 50px; display: inline-flex"/>
-<h2><span id="username"></span></h2>
+<h2><span data-field="username"></span></h2>
 <div
 style="background-color: darkblue; margin: 10px 0px 20px 0px; border-radius: 10px; padding: 5px 10px;  border: 2px solid black;">
 <ul>
-    <li id="adminID"><p><span style="color: lightskyblue">ID: </span> 00</p></li>
-    <li id="adminTelephone"><p><span style="color: lightskyblue">Telefone: </span> (00) 0000-0000</p></li>
-    <li id="adminEmail"><p><span style="color: lightskyblue">Email: </span> victor.heclis@usp.br</p></li>
+    <li id="adminID"><p><span style="color: lightskyblue">ID: </span> <span data-field="id"></span></p></li>
+    <li id="adminTelephone"><p><span style="color: lightskyblue">Telefone: </span> <span data-field="telephone"></span></p></li>
+    <li id="adminEmail"><p><span style="color: lightskyblue">Email: </span> <span data-field="email"></span></p></li>
 
 </ul>
 </div>
-<button onclick="callPage('adminCreateAdmin.html')" class="btn"
+<button href="adminCreateAdmin.html" class="btn"
     style="background-color: darkblue; width: 100%; margin-top: 5px"><span
     style="font-size: large; color: white">Cadastrar Admin</span></button>
-<button onclick="callPage('adminCreateClient.html')" class="btn"
+<button href="adminCreateClient.html" class="btn"
     style="background-color: darkblue; width: 100%; margin-top: 5px"><span
     style="font-size: large; color: white">Cadastrar Cliente</span></button>
-<button onclick="callPage('adminCreateProduct.html')" class="btn"
+<button href="adminCreateProduct.html" class="btn"
     style="background-color: darkblue; width: 100% ; margin-top: 5px"><span
     style="font-size: large; color: white">Cadastrar Produtos</span></button>
-<button onclick="callPage('adminCreateService.html')" class="btn"
+<button href="adminCreateService.html" class="btn"
     style="background-color: darkblue; width: 100%; margin-top: 5px"><span
     style="font-size: large; color: white; ">Cadastrar Serviços</span></button>
-<button onclick="callPage('adminEditar.html')" class="btn"
+<button href="adminEditar.html" class="btn"
     style="background-color: darkblue; width: 100%; margin-top: 5px"><span
     style="font-size: large; color: white; ">Editar informações</span></button>
-<button onclick="callPage('estoque.html')" class="btn"
+<button href="estoque.html" class="btn"
     style="background-color: darkblue; width: 100%; margin-top: 5px"><span
     style="font-size: large; color: white; ">Gerenciar Estoque</span></button>
 <button class="btn" onclick="logoff()" style="background-color: darkblue; width: 100%; margin-top: 5px"><span

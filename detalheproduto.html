@@ -1,6 +1,6 @@
 <div class="text-center">
     <IMG src="img/etiqueta.png" alt="Logo da etiqueta" style="width: 200px; height: 200px"/>
-    <h2 id="productName">DETALHES DO PRODUTO</h2>
+    <h2 id="productName" data-field="name">DETALHES DO PRODUTO</h2>
 </div>
 
 
@@ -9,11 +9,9 @@
         <ul>
             <li><img id="productPhoto" src="img/premieregolden.png" alt="Placeholder para imagem de produto"
                  style="height: 500px; width: 300px; margin-right: 60px; float: left"/></li>
-            <div id="productDescription">
-
-            </div>
+            <div id="productDescription"><p data-field="shortDescription"></p></div>
             <div style="float: right">
-                <li><h2 id="productPrice"> </h2></li>
+                <li><h2 id="productPrice" data-field="price"> </h2></li>
             </div>
         </ul>
 </div>
@@ -21,7 +19,7 @@
     <div style="margin-top: 30">
         <div style="float: right">
             <li>
-                <button class="btn" style="font-size: xx-large" onClick="alert('Produto adicionado ao seu carrinho'); return true">
+                <button class="btn" id="add-to-cart" style="font-size: xx-large">
                   Adicionar ao Carrinho
                 </button>
             </li>

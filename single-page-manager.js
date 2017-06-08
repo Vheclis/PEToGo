@@ -42,7 +42,7 @@ SinglePageManager.prototype.renderFields = function (pageContent, page, data) {
 	if(fields != undefined && fields.length > 0 && data != undefined) {
 		for (var i = 0; i < fields.length; i++) {
 			//console.log(fields[i] + ' = ' + data[fields[i]]);
-			pageContent.find('#'+ fields[i]).html(data[fields[i]]);
+			pageContent.find('[data-field='+ fields[i]+']').html(data[fields[i]]);
 		}
 	}
 }
@@ -177,36 +177,38 @@ SinglePageManager.prototype.bindFormSubmit = function (func, page) {
 	});
 }
 
-SinglePageManager.prototype.bindButtonRef = function (div, func, page) {
+SinglePageManager.prototype.bindButtonRef = function (defaultTarget, func, page) {
 	if (this.eventBind.button == undefined) {
 		this.eventBind['button'] = {
-			'target' : div,
+			'defaultTarget' : defaultTarget,
 			'function' : func
 		}
 	}
-	let button;
+	let doc;
 	if(page != undefined) {
-		button = page.find('button');
+		doc = page;
 	} else {
-		button = $('button');
+		doc = $(document);
 	}
-	button.on('click', function(e) {
-		if(this.is("[href]")) {
+	doc.on('click', 'button', function(e) {
+		let button = $(e.defaultTarget).closest('button');
+		if(button.is("[href]")) {
 			e.preventDefault();
-			let pageRef = this.arr('href');
+			let pageRef = button.attr('href');
+			let target = button.attr('target');
 			if(func != undefined) {
-				func(div, pageRef);
+				func(target || defaultTarget, pageRef);
 			} else {
-				pageManager.render(div, pageRef);
+				pageManager.render(target || defaultTarget, pageRef);
 			}
 		}
 	});
 }
 
-SinglePageManager.prototype.bindARef = function (div, func, page) {
+SinglePageManager.prototype.bindARef = function (target, func, page) {
 	if(this.eventBind.a == undefined) {
 		this.eventBind['a'] = {
-			'target' : div,
+			'target' : target,
 			'function' : func
 		}
 	}
@@ -220,9 +222,9 @@ SinglePageManager.prototype.bindARef = function (div, func, page) {
 		e.preventDefault();
 		let pageRef = $(this).attr('href');
 		if(func != undefined) {
-			func(div, pageRef);
+			func(target, pageRef);
 		} else {
-			pageManager.render(div, pageRef);
+			pageManager.render(target, pageRef);
 		}
 	});
 }
@@ -235,10 +237,10 @@ SinglePageManager.prototype.rebind = function(page) {
 		this.bindFormSubmit(formBind.func, page);
 	}
 	if(buttonBind != undefined) {
-		this.bindButtonRef(buttonBind.div, buttonBind.func, page);
+		this.bindButtonRef(buttonBind.target, buttonBind.func, page);
 	}
 	if(aBind != undefined) {
-		this.bindARef(aBind.div, aBind.func, page);
+		this.bindARef(aBind.target, aBind.func, page);
 	}
 }
 
