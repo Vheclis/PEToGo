@@ -150,6 +150,8 @@ Base.user.insert({ 'username' : 'Jeff', 'password' : '123', 'type' : 'admin' });
 Base.user.insert({ 'username' : 'Nilson', 'password' : '1234', 'type' : 'client' });
 Base.product.insert({'name' : 'whiskas', 'shortDescription' : 'Ração para gatos', 'price' : 49.90});
 Base.product.insert({'name' : 'pedrigree', 'shortDescription' : 'Ração para doggos', 'price' : 59.90});
+Base.product.insert({'name' : 'pedrigree2', 'shortDescription' : 'Ração para doggos2', 'price' : 59.903});
+Base.product.insert({'name' : 'pedrigree3', 'shortDescription' : 'Ração para doggos3', 'price' : 59.903});
 Base.product.insert({'name' : 'dogshow', 'shortDescription' : 'Ração para doggos shows', 'price' : 109.90});
 
 exports.search = function(table, data, callback) {

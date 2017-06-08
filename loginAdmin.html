@@ -1,32 +1,19 @@
-<img id="adminPhoto" src="img/profile-placeholder.png"
-style="width: 100px; height: 100px; border: solid 10px goldenrod; border-radius: 50px; display: inline-flex"/>
+<img id="adminPhoto" class="userPhoto" src="img/profile-placeholder.png"/>
 <h2><span data-field="username"></span></h2>
-<div
-style="background-color: darkblue; margin: 10px 0px 20px 0px; border-radius: 10px; padding: 5px 10px;  border: 2px solid black;">
-<ul>
-    <li id="adminID"><p><span style="color: lightskyblue">ID: </span> <span data-field="id"></span></p></li>
-    <li id="adminTelephone"><p><span style="color: lightskyblue">Telefone: </span> <span data-field="telephone"></span></p></li>
-    <li id="adminEmail"><p><span style="color: lightskyblue">Email: </span> <span data-field="email"></span></p></li>
+<div>
+    <ul>
+        <li id="adminID"><p><span>ID: </span> <span data-field="id"></span></p></li>
+        <li id="adminTelephone"><p><span>Telefone: </span> <span data-field="telephone"></span></p></li>
+        <li id="adminEmail"><p><span>Email: </span> <span data-field="email"></span></p></li>
 
-</ul>
+    </ul>
 </div>
-<button href="adminCreateAdmin.html" class="btn"
-    style="background-color: darkblue; width: 100%; margin-top: 5px"><span
-    style="font-size: large; color: white">Cadastrar Admin</span></button>
-<button href="adminCreateClient.html" class="btn"
-    style="background-color: darkblue; width: 100%; margin-top: 5px"><span
-    style="font-size: large; color: white">Cadastrar Cliente</span></button>
-<button href="adminCreateProduct.html" class="btn"
-    style="background-color: darkblue; width: 100% ; margin-top: 5px"><span
-    style="font-size: large; color: white">Cadastrar Produtos</span></button>
-<button href="adminCreateService.html" class="btn"
-    style="background-color: darkblue; width: 100%; margin-top: 5px"><span
-    style="font-size: large; color: white; ">Cadastrar Serviços</span></button>
-<button href="adminEditar.html" class="btn"
-    style="background-color: darkblue; width: 100%; margin-top: 5px"><span
-    style="font-size: large; color: white; ">Editar informações</span></button>
-<button href="estoque.html" class="btn"
-    style="background-color: darkblue; width: 100%; margin-top: 5px"><span
-    style="font-size: large; color: white; ">Gerenciar Estoque</span></button>
-<button class="btn" onclick="logoff()" style="background-color: darkblue; width: 100%; margin-top: 5px"><span
-    style="font-size: large; color: white">LogOff</span></button>
+<div class="row" id="admin-control">
+    <button href="adminCreateAdmin.html" class="btn">Gerenciar Admin</button>
+    <button href="adminCreateClient.html" class="btn">Cadastrar Cliente</button>
+    <button href="adminCreateProduct.html" class="btn">Cadastrar Produtos</button>
+    <button href="adminCreateService.html" class="btn">Cadastrar Serviços</button>
+    <button href="adminEditar.html" class="btn">Editar informações</button>
+    <button href="estoque.html" class="btn">Gerenciar Estoque</button>
+    <button class="btn" id="button-logoff">LogOff</button>
+</div>

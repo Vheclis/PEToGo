@@ -55,7 +55,7 @@ SinglePageManager.prototype.addPage = function (page, fields, render) {
 	//console.log(page + " added");
 }
 
-SinglePageManager.prototype.renderIn = function (pageIn, at, page, data) {
+SinglePageManager.prototype.render = function (page, data, callback) {
 	if(!this.pageExists(page)) return;
 
 	if(this.pages[page].content != undefined) {
@@ -67,32 +67,42 @@ SinglePageManager.prototype.renderIn = function (pageIn, at, page, data) {
 		}
 		this.rebind(pageContent);
 
-		let atjquery = $(pageIn).find(at);
-		if(atjquery) {
-			atjquery.html(pageContent);
-		}
+		callback(pageContent, data);
 		return;
 	} else {
 		self = this;
 		this.getPage(page, function(response){
 			let pageContent = $(response);
-			self.pages[page].content = pageContent;
+			self.pages[page].content = pageContent.clone();
 			self.renderFields(pageContent, page, data);
 
 			if(self.pages[page].render != undefined) {
 				self.pages[page].render(pageContent, data);
 			}
 			self.rebind(pageContent);
-
-			let atjquery = $(at);
-			if(atjquery) {
-				atjquery.html(pageContent);
-			}
+			callback(pageContent, data);
 		});
 	}
 }
+SinglePageManager.prototype.renderIn = function (pageIn, at, page, data) {
+	this.render(page, data, function(pageContent, data) {
+		let atjquery = $(pageIn).find(at);
+		if(atjquery) {
+			atjquery.html(pageContent);
+		}
+	});
+}
 
-SinglePageManager.prototype.render = function (at, page, data) {
+SinglePageManager.prototype.renderInAppend = function (pageIn, at, page, data) {
+	this.render(page, data, function(pageContent, data) {
+		let atjquery = $(pageIn).find(at);
+		if(atjquery) {
+			atjquery.append(pageContent);
+		}
+	});
+}
+
+SinglePageManager.prototype.renderInDocument = function (at, page, data) {
 	this.renderIn($(document), at, page, data);
 }
 
@@ -199,7 +209,7 @@ SinglePageManager.prototype.bindButtonRef = function (defaultTarget, func, page)
 			if(func != undefined) {
 				func(target || defaultTarget, pageRef);
 			} else {
-				pageManager.render(target || defaultTarget, pageRef);
+				pageManager.renderInDocument(target || defaultTarget, pageRef);
 			}
 		}
 	});
@@ -224,7 +234,7 @@ SinglePageManager.prototype.bindARef = function (target, func, page) {
 		if(func != undefined) {
 			func(target, pageRef);
 		} else {
-			pageManager.render(target, pageRef);
+			pageManager.renderInDocument(target, pageRef);
 		}
 	});
 }

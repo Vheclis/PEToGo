@@ -1,10 +1,3 @@
-body {
-    font: 400 15px Lato, sans-serif ;
-    line-height: 1.8;
-    color: #f6f6f6;
-
-
-}
 
 .fileUpload
 {
@@ -14,81 +7,9 @@ body {
 
 .fileUpload:hover{}
 
-/* Begin calendar*/
-.month {
-    padding: 70px 25px;
-    width: 100%;
-    background: darkblue;
-}
-
-/* Month list */
-.month ul {
-    margin: 0;
-    padding: 0;
-}
-
-.month ul li {
-    color: white;
-    font-size: 20px;
-    text-transform: uppercase;
-    letter-spacing: 3px;
-}
-
-/* Previous button inside month header */
-.month .prev {
-    float: left;
-    padding-top: 10px;
-}
-
-/* Next button */
-.month .next {
-    float: right;
-    padding-top: 10px;
-}
-
-/* Weekdays (Mon-Sun) */
-.weekdays {
-    margin: 0;
-    padding: 10px 0;
-    background-color:#ddd;
-}
-
-.weekdays li {
-    display: inline-block;
-    width: 13.6%;
-    color: #666;
-    text-align: center;
-}
-
-/* Days (1-31) */
-.days {
-    padding: 10px 0;
-    background: #eee;
-    margin: 0;
-}
-
-.days li {
-    list-style-type: none;
-    display: inline-block;
-    width: 13.6%;
-    text-align: center;
-    margin-bottom: 5px;
-    font-size:12px;
-    color:#777;
-}
-
-/* Highlight the "current" day */
-.days li .active {
-    padding: 5px;
-    background: darkblue;
-    color: white !important
-}
-
-/* End calendar*/
-
-.row {
-    display: flex;
-}
+//.row {
+//    display: flex;
+//}
 
 td  {
     width: 26%;
@@ -107,20 +28,6 @@ th {
     width: 25%;
 }
 
-h2 {
-    font-size: 30px;
-    text-transform: uppercase;
-    color: oldlace;
-    font-weight: bolder;
-    margin-bottom: 5px;
-}
-h4 {
-    font-size: 19px;
-    line-height: 1.375em;
-    color: #303030;
-    font-weight: 400;
-    margin-bottom: 30px;
-}
 .jumbotron {
     background-color: lightskyblue;
     color: #fff;
@@ -130,14 +37,11 @@ h4 {
     margin: 0px;
     display: block;
     font-family: Montserrat, sans-serif;
-
-    position: relative;
-    left: -10px;
-
-
 }
-.container-fluid {
-    padding: 30px 50px;
+
+#big-logo {
+     width: 220px; 
+     height: 220px;
 }
 
 .div-move-page {
@@ -168,6 +72,11 @@ h4 {
     color: white;
 }
 
+textarea{
+    margin-top: 5px;
+    color: gray;
+}
+
 .div-signIn {
     font-weight: bolder;
     font-size: large;
@@ -192,16 +101,10 @@ h4 {
     flex-direction: row
 }
 
-
-textarea{
-    margin-top: 5px;
-    color: gray;
-}
-
 .div-signIn input{
     width: 100%;
     color: black;
-    margin: 5px 0px 2px 5px;
+    padding: 5px 0px 2px 5px;
     font-size: medium;
 }
 
@@ -217,19 +120,15 @@ textarea{
     background-color: dodgerblue;
     padding: 50px 20px;
     border-radius: 10px;
-    margin: 0px 10px 10px 0px;
     text-align: left;
     border: 2px solid black;
 }
 
 .div-blue-box {
     background-color: cornflowerblue;
-    padding: 40px 40px 40px 20px;
-
     border-radius: 10px;
-    width: 100%;
     border: 2px solid black;
-
+    padding-top: 20px;
 }
 
 .div-data-box {
@@ -272,35 +171,21 @@ span {
 .navbar {
 
     background-color: lightskyblue;
-    z-index: 9999;
     border: 0;
     font-size: 12px !important;
     line-height: 1.42857143 !important;
     letter-spacing: 4px;
     border-radius: 0;
     font-family: Montserrat, sans-serif;
-    flex-direction: row;
-    display: block;
-
-
 }
 
 .navbar-brand {
     color: #fff !important;
-    display: inline-flex;
-    float: left;
     font-size: large;
-    padding: 10px;
-    margin: 0px;
     text-decoration: none;
 }
 .navbar li a {
     color: #fff !important;
-    display: inline-flex;
-    float: right;
-    padding: 10px;
-    margin-top: 0px;
-
     text-decoration: none;
 }
 
@@ -313,36 +198,23 @@ span {
     color: #fff !important;
 }
 
-.navbar-fixed-top {
-    top: 0;
-    left: 0;
-    z-index: 100;
-    position: fixed;
+.userPhoto {
+    width: 100px;
+    height: 100px;
+    border-radius: 50px;
+    display: inline-flex;    
+}
+
+#adminPhoto {
+    border: solid 10px goldenrod;
+}
+
+#clientPhoto {
+    border: solid 10px black;    
+}
+
+#admin-control,#user-control > button {
     width: 100%;
-
-}
-
-
-.col-sm-3 {
-    width: 25%;
-    display: inline;
-
-}
-
-.col-sm-4 {
-    width: 33.3%;
-    display: inline;
-}
-
-.col-sm-6 {
-    width: 50%;
-    display: inline;
-}
-
-.col-sm-9
-{
-    width: 75%;
-    display: inline;
 }
 
 footer {
@@ -350,12 +222,10 @@ footer {
     font-size: smaller;
     background-color: #303030;
     color: ghostwhite;
-    width: 95%;
     border: 2px solid black;
     border-radius: 8px;
-    margin-top: 20px;
+    margin-top: 10px;
     padding: 10px 5px;
-
 }
 
 footer a {

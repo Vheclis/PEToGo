@@ -1,26 +1,25 @@
-<img id="clientePhoto" src="img/profile-placeholder.png"
-    style="width: 100px; height: 100px; border-radius: 50px; display: inline-flex"/>
-<h2 id="clientName"><span>Niltom Furquim</span></h2>
-<div style="background-color: darkblue; margin: 10px 0px 20px 0px; border-radius: 10px; padding: 5px 10px;  border: 2px solid black;">
+<img id="clientePhoto" class='userPhoto' src="img/profile-placeholder.png"/>
+<h2 id="clientName"><span data-field='username'>USERNAME</span></h2>
+<div>
     <ul>
-        <li id="clientID"><p><span style="color: lightskyblue">ID: </span> 324</p></li>
-        <li id="clientAddress"><p><span style="color: lightskyblue">Endereço: </span> USP, Laboratório 05</p></li>
-        <li id="clientTelephone"><p><span style="color: lightskyblue">Telefone: </span> (66) 1234-5678</p></li>
-        <li id="clientEmail"><p><span style="color: lightskyblue">Email: </span> niltom.furquim@unesp.lorena.br</p></li>
-        <li>
-            <form>
-                <div style="width: 100%; color: darkblue; ">
-                    <input id="searchPet" type="search" placeholder="Pesquisar PET"/>
-                    <button class="btn" style="background-color: lightskyblue; margin-left: 5px">Pesquisar</button>
-                </div>
-            </form>
+        <li id="clientID">
+            <p>ID: <span data-field='id'>ID</span></p>
+        </li>
+        <li id="clientAddress">
+            <p>Endereço:<span data-field='address'>ADDRESS</span></p>
+        </li>
+        <li id="clientTelephone">
+            <p>Telefone:<span data-field='telephone'>TELEFONE</span></p>
+        </li>
+        <li id="clientEmail">
+            <p>Email:<span data-field='email'>EMAIL</span></p>
         </li>
     </ul>
 </div>
 
-<button class="btn" onclick="callPage('editClientProfile.html')" style="background-color: darkblue; width: 100%"><span
-  style="font-size: large; color: white">Editar Perfil</span></button>
-<button class="btn" onclick="callPage('createPET.html')" style="background-color: darkblue; width: 100%; margin-top: 5px"><span
-  style="font-size: large; color: white">Adicionar PET</span></button>
-<button class="btn" onclick="logoff()" style="background-color: darkblue; width: 100%; margin-top: 5px"><span
-    style="font-size: large; color: white">LogOff</span></button>
+<div class="row" id="user-control">
+    <button class="btn" href="editClientProfile.html">Editar Perfil</button>
+    <button class="btn" href="myPets.html">Meus Pets</button>
+    <!--button class="btn" href="createPET.html">Adicionar PET</button-->
+    <button class="btn" id="logoff">Logoff</button>
+</div>
