@@ -1,14 +1,10 @@
-<div style="margin-top: 100px">
-	<ul>
-		<li><img src="img/premieregolden.png" alt="Placeholder para imagem de produto"
-		 style="height: 100px; width: 100px; margin-right: 20px; float: left"/></li>
-		 <li><h3 data-field='name'>NOME</h3></li>
-		 <li><h4 data-field='shortDescription'>DESCRIPTION</h4></li>
-		 <div style="float: right">
-			<li>
-				<h4 class="price" data-field='price'>PRICE</h4>
-				<form><input type="number" name="quantity"/></form>
-			</li>
-		</div>
-	</ul>
-</div>
+<tr>
+	<td><h4 data-field='cartid'>CART ID</h4></td>
+	<td class="photo"><img src="img/dog-990304_640.png" class="cart-photo"></td>
+	<td class="title">
+		<h4 class="title" data-field='name'>NAME</h4> 
+		<p class="summary" data-field='shortDescription'>SHORTDESCRIPTION</p>
+	</td>
+	<td><h4 data-field='price'></h4></td>
+	<td class="quantity"><input class="cart-item-quantity" data-cart-id type="number" name="quantity" style="width : 40px;"></input></td>
+</tr>

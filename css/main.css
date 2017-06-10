@@ -11,23 +11,6 @@
 //    display: flex;
 //}
 
-td  {
-    width: 26%;
-    background-color: lightskyblue;
-    color: black;
-
-}
-
-td a {
-    display: block;
-    width: 100%;
-    text-effect: none;
-}
-
-th {
-    width: 25%;
-}
-
 .jumbotron {
     background-color: lightskyblue;
     color: #fff;
@@ -83,7 +66,7 @@ textarea{
     background-color: #303030;
     color: ghostwhite;
     width: 100%;
-    border: 2px solid black;
+    //border: 2px solid black;
     border-radius: 8px;
     margin-top: 40px;
     padding: 10px 5px;
@@ -121,20 +104,20 @@ textarea{
     padding: 50px 20px;
     border-radius: 10px;
     text-align: left;
-    border: 2px solid black;
+    //border: 2px solid black;
 }
 
 .div-blue-box {
     background-color: cornflowerblue;
     border-radius: 10px;
-    border: 2px solid black;
+    //border: 2px solid black;
     padding-top: 20px;
 }
 
 .div-data-box {
     background-color: dodgerblue;
     padding: 5px 20px;
-    border: 2px solid black;
+    //border: 2px solid black;
     margin-top: 20px
 
 }
@@ -213,8 +196,29 @@ span {
     border: solid 10px black;    
 }
 
-#admin-control,#user-control > button {
+.cart-photo {
+    width: 60px;
+    height: 60px;
+}
+
+#cart-list tr td {
+    vertical-align: middle;
+}
+
+//#cart-list .quantity {
+//    width: 61px;
+//}
+
+#admin-control > button {
     width: 100%;
+}
+
+#userBox button {
+    margin: 3px 0px;
+}
+
+#userBox input {
+    margin: 3px 0px;
 }
 
 footer {
@@ -222,7 +226,7 @@ footer {
     font-size: smaller;
     background-color: #303030;
     color: ghostwhite;
-    border: 2px solid black;
+    //border: 2px solid black;
     border-radius: 8px;
     margin-top: 10px;
     padding: 10px 5px;
@@ -230,4 +234,38 @@ footer {
 
 footer a {
     color: ghostwhite;
+}
+
+#schedule-service-table tr th {
+    text-align: center;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.schedule-service-form input[type=text]{
+    width: 100%;
+    border: none;
+    text-align: center;
+}
+
+.schedule-service-form .service-name {
+    
+}
+
+.white, .white a {
+  color: #fff;
+}
+
+.top-margin-50 {
+    margin-top: 50px;
+}
+
+#schedule-icon {
+    font-size: 60px;
+}
+
+.active {
+    color: lightblue;
 }

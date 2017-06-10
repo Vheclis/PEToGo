@@ -1,40 +1,40 @@
-            <ul style="width: 100%">
-                <li><h2>Cadastro de Administradores</h2></li>
-                <li>
-                    <div class="div-signIn">
-                        <form id="formAdminCreateAdmin" action="/insert" method="POST">
-                            <div class="div-field">
-                                Nome:
-                                <input name="name" type="text" placeholder="Nome completo"/>
-                            </div>
-                            <div class="div-field">
-                                User:
-                                <input name="user" type="text" placeholder="Senha para LogIn"/>
-                            </div>
-                            <div class="div-field">
-                                Senha:
-                                <input name="password" type="password" placeholder="Senha para LogIn"/>
-                            </div>
-                            <div class="div-field">
-                                Telefone:
-                                <input name="telephone" type="text" placeholder="(00)0000-0000"/>
-                            </div>
-                            <div class="div-field">
-                                Email:
-                                <input name="email" type="text" placeholder="exemplo@usp.br"/>
-                            </div>
-                            <div class="div-field">
-                                <span >Foto: </span>
-                                <input name="photo" type="file" style="color: ghostwhite;  width: 50%; float: left"/>
-                            </div>
+<ul style="width: 100%">
+    <li><h2>Cadastro de Administradores</h2></li>
+    <li>
+        <div class="div-signIn">
+            <form data-form-name="formAdminCreateAdmin" action="/insert" method="POST">
+                <div class="div-field">
+                    Nome:
+                    <input name="name" type="text" placeholder="Nome completo"/>
+                </div>
+                <div class="div-field">
+                    User:
+                    <input name="user" type="text" placeholder="Senha para LogIn"/>
+                </div>
+                <div class="div-field">
+                    Senha:
+                    <input name="password" type="password" placeholder="Senha para LogIn"/>
+                </div>
+                <div class="div-field">
+                    Telefone:
+                    <input name="telephone" type="text" placeholder="(00)0000-0000"/>
+                </div>
+                <div class="div-field">
+                    Email:
+                    <input name="email" type="text" placeholder="exemplo@usp.br"/>
+                </div>
+                <div class="div-field">
+                    <span >Foto: </span>
+                    <input name="photo" type="file" style="color: ghostwhite;  width: 50%; float: left"/>
+                </div>
 
-                            <input type="submit" class="btn" 
-                                    style="background-color: darkblue; width: 40%; margin-top: 10px; float: right"><span
-                                style="font-size: large; color: white; margin-top: 5px">Cadastrar</span></button>
-                            <!-- <button class="btn" onclick="sendForm('formAdminCreateAdmin')" 
-                                    style="background-color: darkblue; width: 40%; margin-top: 10px; float: right"><span
-                                style="font-size: large; color: white; margin-top: 5px">Cadastrar</span></button> -->
-                        </form>
-                    </div>
-                </li>
-            </ul>
+                <input type="submit" class="btn" 
+                        style="background-color: darkblue; width: 40%; margin-top: 10px; float: right"><span
+                    style="font-size: large; color: white; margin-top: 5px">Cadastrar</span></button>
+                <!-- <button class="btn" onclick="sendForm('formAdminCreateAdmin')" 
+                        style="background-color: darkblue; width: 40%; margin-top: 10px; float: right"><span
+                    style="font-size: large; color: white; margin-top: 5px">Cadastrar</span></button> -->
+            </form>
+        </div>
+    </li>
+</ul>

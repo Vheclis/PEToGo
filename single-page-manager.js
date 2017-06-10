@@ -73,6 +73,9 @@ SinglePageManager.prototype.render = function (page, data, callback) {
 		self = this;
 		this.getPage(page, function(response){
 			let pageContent = $(response);
+			if(page == 'cartLine.html') {
+				console.log(pageContent);
+			}
 			self.pages[page].content = pageContent.clone();
 			self.renderFields(pageContent, page, data);
 
@@ -115,7 +118,7 @@ SinglePageManager.prototype.getAll = function() {
 
 SinglePageManager.prototype.sendForm = function (form) {
 	console.log(form);
-	let formId = form.attr('id');
+	let formId = form.attr('data-form-name');
 	let method = form.attr('method').toUpperCase() || 'POST';
 	let url = form.attr('action') || '/' + formId;
 	//let type = form.attr('type') || 'application/json';
@@ -132,8 +135,8 @@ SinglePageManager.prototype.sendForm = function (form) {
 	//	'message' : $(formId).serializeObject()
 	//};
 
-	console.log('data to send:');
-	console.log(data);
+	//console.log('data to send:');
+	//console.log(data);
 	$.ajax({
 		type: method,
 		url: url,
@@ -201,11 +204,15 @@ SinglePageManager.prototype.bindButtonRef = function (defaultTarget, func, page)
 		doc = $(document);
 	}
 	doc.on('click', 'button', function(e) {
-		let button = $(e.defaultTarget).closest('button');
+		//let button = $(e.defaultTarget);
+		//console.log(button);
+		//if (!button.is('button')) {
+			let button = $(e.target).closest('button');
+		//}
 		if(button.is("[href]")) {
 			e.preventDefault();
-			let pageRef = button.attr('href');
 			let target = button.attr('target');
+			let pageRef = button.attr('href');
 			if(func != undefined) {
 				func(target || defaultTarget, pageRef);
 			} else {
