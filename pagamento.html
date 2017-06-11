@@ -9,26 +9,26 @@
                         <form id="formPayment">
                               <div class="div-field">
                                   Nome:
-                                  <input name="name" type="text" placeholder="NOME COMPLETO"/>
+                                  <input name="name" type="text" placeholder="NOME COMPLETO" required/>
                               </div>
                               <div class="div-field">
                                   Vencimento:
-                                  <input name="dueDate" type="text" placeholder="mm/yy"/>
+                                  <input name="dueDate" type="text" placeholder="mm/yy" required/>
                               </div>
                               <div class="div-field">
                                   Código:
-                                  <input name="code" type="password" placeholder="***"/>
+                                  <input name="code" type="password" placeholder="***" required/>
                               </div>
                               <div class="div-field">
                                   Número:
-                                  <input name="cardNumber" type="text" placeholder="0000 0000 0000 0000"/>
+                                  <input name="cardNumber" type="text" placeholder="0000 0000 0000 0000" required/>
                               </div>
 
                         </form>
                     </div>
                 </li>
                 <li>
-                    <button class="btn" style="font-size: xx-large">Concluir pagamento</button>
+                    <button class="btn" onclick="finishPayment()" style="font-size: xx-large">Concluir pagamento</button>
                 </li>
               </div>
             </ul>

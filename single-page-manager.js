@@ -41,7 +41,7 @@ SinglePageManager.prototype.renderFields = function (pageContent, page, data) {
 	let fields = this.pages[page].fields;
 	if(fields != undefined && fields.length > 0 && data != undefined) {
 		for (var i = 0; i < fields.length; i++) {
-			//console.log(fields[i] + ' = ' + data[fields[i]]);
+			console.log(fields[i] + ' = ' + data[fields[i]]);
 			pageContent.find('[data-field='+ fields[i]+']').html(data[fields[i]]);
 		}
 	}
@@ -146,7 +146,7 @@ SinglePageManager.prototype.sendForm = function (form) {
 		success: function (response) {
 			console.log('sendForm ' + formId + ': success');
 			if(callback != undefined) {
-				callback(false, response);	
+				callback(false, response);
 			} else {
 				console.log('No callback defined for '+formId);
 			}
@@ -154,7 +154,7 @@ SinglePageManager.prototype.sendForm = function (form) {
 		error: function (response) {
 			console.log('sendForm ' + formId + ': error');
 			if(callback != undefined) {
-				callback(true, response);	
+				callback(true, response);
 			} else {
 				console.log('No callback defined for '+formId);
 			}
@@ -219,6 +219,10 @@ SinglePageManager.prototype.bindButtonRef = function (defaultTarget, func, page)
 				pageManager.renderInDocument(target || defaultTarget, pageRef);
 			}
 		}
+		if(button.is('button-logoff')) {
+		    user.username == '';
+            pageManager.renderInDocument('#userBox', 'loginDefault.html');
+        }
 	});
 }
 

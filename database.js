@@ -99,7 +99,7 @@ Table.prototype.update = function (tuple) {
 			result.message = 'Something wrong...';
 			return result;
 		} else {
-			tuple 
+			tuple
 			tuple.forEach(function(value, key, item) {
 				array[0][key] = value;
 			});
@@ -137,7 +137,7 @@ let Base = {
 	'service' : new Table('id', true),
 	'product' : new Table('id', true),
 	'user' : new Table('username', false),
-	'schedule' : new Table('id', true) 
+	'schedule' : new Table('id', true)
 }
 
 //console.log(Base.pet.autoId);
@@ -146,14 +146,14 @@ let Base = {
 //console.log(Base.user.autoId);
 //console.log(Base.schedule.autoId);
 
-Base.user.insert({ 'username' : 'Jeff', 'password' : '123', 'type' : 'admin' });
-Base.user.insert({ 'username' : 'Nilson', 'password' : '1234', 'type' : 'client' });
+Base.user.insert({'id' : '00', 'telephone': '(19)3533 - 3324', 'email': 'victor.heclis@usp.br', 'address': '', 'username' : 'Jeff', 'password' : '123', 'type' : 'admin' , 'img':'https://goo.gl/SWdfhw'});
+Base.user.insert({'id' : '01', 'telephone': '(11)3431 - 3844', 'email': 'nilson.furquim@usp.br', 'address': 'USP','username' : 'Nilson', 'password' : '1234', 'type' : 'client','img':''});
 
-Base.product.insert({'name' : 'whiskas', 'shortDescription' : 'Ração para gatos', 'price' : 49.90});
-Base.product.insert({'name' : 'pedrigree', 'shortDescription' : 'Ração para doggos', 'price' : 59.90});
-Base.product.insert({'name' : 'pedrigree2', 'shortDescription' : 'Ração para doggos2', 'price' : 59.903});
-Base.product.insert({'name' : 'pedrigree3', 'shortDescription' : 'Ração para doggos3', 'price' : 59.903});
-Base.product.insert({'name' : 'dogshow', 'shortDescription' : 'Ração para doggos shows', 'price' : 109.90});
+Base.product.insert({'name' : 'whiskas', 'shortDescription' : 'Ração para gatos','amount': 10 , 'bigDescription':'Raaação para gaatos' ,'price' : 49.90});
+Base.product.insert({'name' : 'pedrigree', 'shortDescription' : 'Ração para doggos', 'amount': 10 , 'bigDescription':'Raaação para dooogos' , 'price' : 59.90});
+Base.product.insert({'name' : 'pedrigree2', 'shortDescription' : 'Ração para doggos2','amount': 10 , 'bigDescription':'Raaação para dooogos2' , 'price' : 59.903});
+Base.product.insert({'name' : 'pedrigree3', 'shortDescription' : 'Ração para doggos3','amount': 10 , 'bigDescription':'Raaação para dooogos3' , 'price' : 59.903});
+Base.product.insert({'name' : 'dogshow', 'shortDescription' : 'Ração para doggos shows','amount': 10 , 'bigDescription':'Raaação para dooogos4' , 'price' : 109.90});
 
 Base.service.insert({'username' : '', 'type' : 'Banho', 'date' : '2017-06-10', 'time' : '18:00', 'type' : 'Banho', 'status' : 'free'});
 Base.service.insert({'username' : '', 'type' : 'Banho', 'date' : '2017-06-10', 'time' : '19:00', 'type' : 'Banho', 'status' : 'free'});

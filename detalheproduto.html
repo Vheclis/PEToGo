@@ -28,17 +28,17 @@
 </ul-->
 <div style="text-align: center;">
     <img src="img/etiqueta.png" alt="Logo da etiqueta" style="width: 50px; height: 50px"/>
-    <h2>DETALHES DO PRODUTO</h2>    
+    <h2>DETALHES DO PRODUTO</h2>
 </div>
 
 <div class="thumbnail">
     <img id="productPhoto" class="img-responsive" src="img/premieregolden.png" alt="Placeholder para imagem de produto"/>
     <div class="caption-full">
         <h4 class="pull-right" data-field='price'>PRICE</h4>
-        <h4 data-field='name'>NAME</h4>
+        <h4 id="product-name" data-field='name'>NAME</h4>
         <p data-field='shortDescription'>SHORT DESCRIPTION</p>
-        <p data-field='longDescription'>LONG DESCRIPTION</p>
-        <button class="btn" id="add-to-cart">
+        <p data-field='bigDescription'>LONG DESCRIPTION</p>
+        <button class="btn" id="add-to-cart" onclick="alert($('#product-name').innerHTML + ' adicionado ao carrinho')">
           Adicionar ao Carrinho
       </button>
   </div>
