@@ -9,12 +9,34 @@ $(document).ready(function() {
 	pageManager.addPage('home.html');
 	pageManager.addPage('loginDefault.html');
 	pageManager.renderInDocument('#contentBox', 'home.html');
-	pageManager.renderInDocument('#userBox', 'loginDefault.html');
+	pageManager.renderInDocument('#userBox', 'loginDefault.html', function (pageContent, data) {
+        pageContent.find('#register-button').on("click",function (e) {
+            pageManager.renderInDocument('#contentBox','adminCreateClient.html');
+        })
+    });
 });
 
 //Login
-pageManager.addPage('loginAdmin.html', ['img','username', 'id', 'telephone', 'email']);
-pageManager.addPage('loginClient.html', ['img','username', 'id', 'telephone', 'email', 'address']);
+pageManager.addPage('loginAdmin.html', ['img','username', 'id', 'telephone', 'email'], function (pageContent, data) {
+    pageContent.find('#adminPhoto').attr("src",user.img);
+    pageContent.find('#button-logoff').on("click", function (e) {
+        user.username = '';
+        user.type = '';
+        $('#navName').text('USUÁRIO');
+        pageManager.renderInDocument('#userBox', 'loginDefault.html');
+        pageManager.renderInDocument('#contentBox','home.html');
+    });
+});
+pageManager.addPage('loginClient.html', ['img','username', 'id', 'telephone', 'email', 'address'], function (pageContent, data) {
+    pageContent.find('#clientPhoto').attr("src",user.img);
+    pageContent.find('#logoff').on("click",function (e) {
+        user.username = '';
+        user.type = '';
+        $('#navName').text('USUÁRIO');
+        pageManager.renderInDocument('#userBox', 'loginDefault.html');
+        pageManager.renderInDocument('#contentBox','home.html');
+    });
+});
 pageManager.addFormCallback('formLogin', function(err, response) {
 	if(err) {
 		console.log('Login error');
@@ -23,26 +45,13 @@ pageManager.addFormCallback('formLogin', function(err, response) {
 		user = response;
 		if(user.type == 'admin') {
 			pageManager.renderInDocument('#userBox', 'loginAdmin.html', response);
-            $("#adminPhoto").attr("usr",user.img);
 		} else {
 			pageManager.renderInDocument('#userBox', 'loginClient.html', response);
-            $("#clientPhoto").attr("usr",user.img);
 		}
 		$('#navName').text(user.username);
 
 	}
 });
-
-function logoff() {
-    user.username = '';
-    user.type = '';
-    $('#navName').text('USUÁRIO');
-    pageManager.renderInDocument('#userBox', 'loginDefault.html');
-    pageManager.renderInDocument('#contentBox','home.html');
-}
-function register() {
-    pageManager.renderInDocument('#contentBox','adminCreateClient.html');
-}
 
 
 
@@ -65,6 +74,9 @@ pageManager.addPage('carrinho.html', [], function (pageContent, data) {
 		submit.attr('disabled', "");
 	}
 
+	pageContent.find('#button-buy').on('click',function (e) {
+        pageManager.renderInDocument('#contentBox', 'pagamento.html');
+    })
 });
 pageManager.addPage('cartLine.html', ['cartid', 'id', 'name', 'shortDescription', 'price'], function (pageContent, data) {
 	console.log(data.item);
@@ -83,9 +95,6 @@ pageManager.addPage('cartLine.html', ['cartid', 'id', 'name', 'shortDescription'
 	});
 });
 pageManager.addPage('pagamento.html');
-function callCard() {
-    pageManager.renderInDocument('#contentBox', 'pagamento.html');
-}
 
 
 pageManager.addPage('detalheproduto.html', ['id', 'name', 'shortDescription', 'bigDescription', 'price'], function (pageContent, data){

@@ -146,8 +146,8 @@ let Base = {
 //console.log(Base.user.autoId);
 //console.log(Base.schedule.autoId);
 
-Base.user.insert({'id' : '00', 'telephone': '(19)3533 - 3324', 'email': 'victor.heclis@usp.br', 'address': '', 'username' : 'Jeff', 'password' : '123', 'type' : 'admin' , 'img':'https://goo.gl/SWdfhw'});
-Base.user.insert({'id' : '01', 'telephone': '(11)3431 - 3844', 'email': 'nilson.furquim@usp.br', 'address': 'USP','username' : 'Nilson', 'password' : '1234', 'type' : 'client','img':''});
+Base.user.insert({'telephone': '(19)3533 - 3324', 'email': 'victor.heclis@usp.br', 'address': '', 'username' : 'Jeff', 'password' : '123', 'type' : 'admin' , 'img':'https://goo.gl/8bgJ2f'});
+Base.user.insert({'telephone': '(11)3431 - 3844', 'email': 'nilson.furquim@usp.br', 'address': 'USP','username' : 'Nilson', 'password' : '1234', 'type' : 'client','img':'https://goo.gl/SWdfhw'});
 
 Base.product.insert({'name' : 'whiskas', 'shortDescription' : 'Ração para gatos','amount': 10 , 'bigDescription':'Raaação para gaatos' ,'price' : 49.90});
 Base.product.insert({'name' : 'pedrigree', 'shortDescription' : 'Ração para doggos', 'amount': 10 , 'bigDescription':'Raaação para dooogos' , 'price' : 59.90});
