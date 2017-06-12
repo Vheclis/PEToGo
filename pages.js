@@ -24,6 +24,7 @@ pageManager.addPage('loginAdmin.html', ['img','username', 'id', 'telephone', 'em
         pageManager.renderInDocument('#contentBox','home.html');
     });
 });
+
 pageManager.addPage('loginClient.html', ['img','username', 'id', 'telephone', 'email', 'address'], function (pageContent, data) {
     pageContent.find('#clientPhoto').attr("src",user.img);
     pageContent.find('#logoff').on("click",function (e) {
@@ -186,25 +187,22 @@ pageManager.addPage('store.html', [], function (pageContent, data) {
 	})
 });
 
-<<<<<<< HEAD
-=======
-pageManager.addPage('stockLine.html', ['id', 'name', 'shortDescription', 'bigDescription' , 'price']);
-pageManager.addPage('estoque.html', [], function (pageContent, data) {
-	console.log("ops...");
-    pageContent.find('#searchStock').on('input', function (e) {
-        console.log("searching...");
-        let input = $(this);
-        let val = input.val();
-        if (val != "") {
-            pageContent.find('.stock-item').addClass('hidden');
-            pageContent.find('[data-field="name"]:contains("'+val+'")').closest('.store-item').removeClass('hidden');
-            pageContent.find('[data-field="shortDescription"]:contains("'+val+'")').closest('.store-item').removeClass('hidden');
-        } else {
-            pageContent.find('.stock-item').removeClass('hidden');
-        }
-    });
->>>>>>> e99540ef5fbb40fcee2a6cdbbc15dbfc3c694ab3
-
+//pageManager.addPage('stockLine.html', ['id', 'name', 'shortDescription', 'bigDescription' , 'price']);
+//pageManager.addPage('estoque.html', [], function (pageContent, data) {
+//	console.log("ops...");
+//    pageContent.find('#searchStock').on('input', function (e) {
+//        console.log("searching...");
+//        let input = $(this);
+//        let val = input.val();
+//        if (val != "") {
+//            pageContent.find('.stock-item').addClass('hidden');
+//            pageContent.find('[data-field="name"]:contains("'+val+'")').closest('.store-item').removeClass('hidden');
+//            pageContent.find('[data-field="shortDescription"]:contains("'+val+'")').closest('.store-item').removeClass('hidden');
+//        } else {
+//            pageContent.find('.stock-item').removeClass('hidden');
+//        }
+//    });
+//});
 
 function convertDate(date) {
 	var day = ("0" + date.getDate()).slice(-2);
@@ -286,13 +284,6 @@ pageManager.addFormCallback('formAdminCreateProduct', function (err, response) {
     }
 
 })
-<<<<<<< HEAD
-
-
-pageManager.addPage('stockLine.html', ['id', 'name', 'shortDescription', 'bigDescription' , 'price']);
-
-=======
->>>>>>> e99540ef5fbb40fcee2a6cdbbc15dbfc3c694ab3
 //'adminCreateAdmin.html'
 pageManager.addPage('adminCreateClient.html');
 //'adminCreateProduct.html'
