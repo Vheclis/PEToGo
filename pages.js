@@ -262,7 +262,8 @@ pageManager.addPage('schedulePET.html', ['day1', 'day2', 'day3', 'day4'], functi
 });
 
 pageManager.addPage('scheduleLine.html', [], function(pageContent, data) {
-	pageContent.find('[name="service.name"]').val(data.username).attr('value', data.username);
+	pageContent.find('[name="service.username"]').val(data.username).attr('value', data.username);
+	pageContent.find('[name="service.id"]').val(data.id).attr('value', data.id);
 	pageContent.find('[name="service.type"]').val(data.type).attr('value', data.type);
 	pageContent.find('[name="service.time"]').val(data.time).attr('value', data.time);
 	if(user.username == '') {
@@ -284,10 +285,10 @@ pageManager.addFormCallback('formAdminCreateProduct', function (err, response) {
     }
 
 })
-//'adminCreateAdmin.html'
+pageManager.addPage('adminCreateAdmin.html');
 pageManager.addPage('adminCreateClient.html');
-//'adminCreateProduct.html'
-//'adminCreateService.html'
+pageManager.addPage('adminCreateProduct.html');
+pageManager.addPage('adminCreateService.html');
 //'adminEditar.html'
 //'adminMain.html'
 //'adminServices.html'
