@@ -65,10 +65,10 @@ SinglePageManager.prototype.render = function (page, data, callback) {
 		let pageContent = this.pages[page].content.clone();
 
 		this.renderFields(pageContent, page, data);
+		this.rebind(pageContent);
 		if(this.pages[page].render != undefined) {
 			this.pages[page].render(pageContent, data);
 		}
-		this.rebind(pageContent);
 
 		callback(pageContent, data);
 		return;
@@ -82,10 +82,10 @@ SinglePageManager.prototype.render = function (page, data, callback) {
 			self.pages[page].content = pageContent.clone();
 			self.renderFields(pageContent, page, data);
 
+			self.rebind(pageContent);
 			if(self.pages[page].render != undefined) {
 				self.pages[page].render(pageContent, data);
 			}
-			self.rebind(pageContent);
 			callback(pageContent, data);
 		});
 	}

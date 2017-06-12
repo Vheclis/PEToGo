@@ -75,8 +75,11 @@ app.post('/insert', verifyUndefined, function (req, res) {
 })
 
 app.put('/update', verifyUndefined, function (req, res) {
+	console.log("/update");
 	let data = req.body;
-	db.update(Object.keys(data)[0], data, function(result) {
+	console.log(data);
+	let bd = Object.keys(data)[0];
+	db.update(bd, data[bd], function(result) {
 		if (result.isError) {
 			console.log('error');
 			res.status(400).send(result.message);
@@ -90,8 +93,11 @@ app.put('/update', verifyUndefined, function (req, res) {
 
 
 app.delete('/remove', verifyUndefined, function (req, res) {
+	console.log("/remove");
 	let data = req.body;
-	db.remove(Object.keys(data)[0], data, function(result) {
+	console.log(data);
+	let bd = Object.keys(data)[0];
+	db.remove(bd, data[bd], function(result) {
 		if (result.isError) {
 			console.log('error');
 			res.status(400).send(result.message);
