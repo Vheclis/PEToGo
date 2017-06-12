@@ -9,11 +9,7 @@ $(document).ready(function() {
 	pageManager.addPage('home.html');
 	pageManager.addPage('loginDefault.html');
 	pageManager.renderInDocument('#contentBox', 'home.html');
-	pageManager.renderInDocument('#userBox', 'loginDefault.html', function (pageContent, data) {
-        pageContent.find('#register-button').on("click",function (e) {
-            pageManager.renderInDocument('#contentBox','adminCreateClient.html');
-        })
-    });
+	pageManager.renderInDocument('#userBox', 'loginDefault.html');
 });
 
 //Login
@@ -30,6 +26,7 @@ pageManager.addPage('loginAdmin.html', ['img','username', 'id', 'telephone', 'em
 pageManager.addPage('loginClient.html', ['img','username', 'id', 'telephone', 'email', 'address'], function (pageContent, data) {
     pageContent.find('#clientPhoto').attr("src",user.img);
     pageContent.find('#logoff').on("click",function (e) {
+        user.username = '';
         user.username = '';
         user.type = '';
         $('#navName').text('USUÁRIO');
@@ -155,7 +152,7 @@ pageManager.addPage('store.html', [], function (pageContent, data) {
 	})
 });
 
-/*STOCK
+//STOCK
 pageManager.addPage('estoque.html', [], function (pageContent, data) {
     pageContent.find('#searchStock').on('input', function (e) {
         console.log("searching...");
@@ -184,7 +181,7 @@ pageManager.addPage('estoque.html', [], function (pageContent, data) {
         error: function (error){
         }
     })
-});*/
+});
 
 function convertDate(date) {
 	var day = ("0" + date.getDate()).slice(-2);
@@ -266,7 +263,9 @@ pageManager.addFormCallback('formAdminCreateProduct', function (err, response) {
     }
 
 })
-pageManager.addPage('estoque.html');
+
+
+pageManager.addPage('stockLine.html', ['id', 'name', 'shortDescription', 'bigDescription' , 'price']);
 //'adminCreateAdmin.html'
 pageManager.addPage('adminCreateClient.html');
 //'adminCreateProduct.html'
