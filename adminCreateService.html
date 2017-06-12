@@ -1,33 +1,32 @@
-            <ul style="width: 100%">
-                <li><h2>Cadastro de Serviço</h2></li>
-                <li>
-                    <div class="div-signIn">
-                        <form id="formAdminCreateService" action="/insert" method="POST">
-                            <div class="div-field">
-                                Serviço:
-                                <input name="name" type="text" placeholder="Nome completo"/>
-                            </div>
-                            <div class="div-field">
-                                Preço:
-                                <input name="price" type="text" placeholder="$ 000,00"/>
-                            </div>
-                            <div class="div-field">
-                                Horário:
-                                <input name="hour" type="text" placeholder="00:00"/>
-                            </div>
-                            <div class="div-field">
-                                Data:
-                                <input name="date" style="color: gray" type="date"/>
-                            </div>
+<ul style="width: 100%">
+    <li><h2>Cadastro de Serviço</h2></li>
+    <li>
+        <div class="div-signIn">
+            <form id="formAdminCreateService" action="/insert" method="POST">
+                <div class="div-field">
+                    Serviço:
+                    <input name="service.name" type="text" placeholder="Nome completo"/>
+                </div>
+                <div class="div-field">
+                    Preço:
+                    <input name="service.price" type="text" placeholder="000.00"/>
+                </div>
+                <div class="div-field">
+                    Horário:
+                    <input name="service.hour" type="text" placeholder="00:00"/>
+                </div>
+                <div class="div-field">
+                    Data:
+                    <input name="service.date" style="color: gray" type="date"/>
+                </div>
 
-                            <textarea name="bigDescription" rows="5" cols="50" style="margin: 5px">Digite aqui uma descrição completa do serviço</textarea>
-                            <textarea name="shortDescription" rows="5" cols="50" style="margin: 5px; float: right">Digite aqui uma descrição curta do serviço</textarea>
+                <textarea name="service.bigDescription" rows="5" cols="50" style="margin: 5px">Digite aqui uma descrição completa do serviço</textarea>
+                <textarea name="service.shortDescription" rows="5" cols="50" style="margin: 5px; float: right">Digite aqui uma descrição curta do serviço</textarea>
+                <input type="text" name="status" value="free"/>
 
 
-                            <button class="btn" onclick="sendForm('#formAdminCreateService')" 
-                                    style="background-color: darkblue; width: 40%; margin-top: 10px; float: right"><span
-                                style="font-size: large; color: white; margin-top: 5px">Cadastrar</span></button>
-                        </form>
-                    </div>
-                </li>
-            </ul>
+                <input type='submit' class="btn" style="background-color: darkblue; width: 40%; margin-top: 10px; float: right" value="Cadastrar">
+            </form>
+        </div>
+    </li>
+</ul>
