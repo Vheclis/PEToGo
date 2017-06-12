@@ -187,22 +187,55 @@ pageManager.addPage('store.html', [], function (pageContent, data) {
 	})
 });
 
-//pageManager.addPage('stockLine.html', ['id', 'name', 'shortDescription', 'bigDescription' , 'price']);
-//pageManager.addPage('estoque.html', [], function (pageContent, data) {
-//	console.log("ops...");
-//    pageContent.find('#searchStock').on('input', function (e) {
-//        console.log("searching...");
-//        let input = $(this);
-//        let val = input.val();
-//        if (val != "") {
-//            pageContent.find('.stock-item').addClass('hidden');
-//            pageContent.find('[data-field="name"]:contains("'+val+'")').closest('.store-item').removeClass('hidden');
-//            pageContent.find('[data-field="shortDescription"]:contains("'+val+'")').closest('.store-item').removeClass('hidden');
-//        } else {
-//            pageContent.find('.stock-item').removeClass('hidden');
-//        }
-//    });
-//});
+pageManager.addPage('stockLine.html', ['id', 'name', 'shortDescription', 'bigDescription' , 'price', 'amount', 'img'], function (pageContent, data) {
+    pageContent.find("#stockLineAmount").attr("placeholder",data.amount);
+    pageContent.find('#stockImg').attr("src",data.img);
+    pageContent.find('#buttonChangeAmount').on("click", function (e) {
+        let value = pageContent.find("#stockLineAmount").val();
+        let obj = {'product' : { 'id' : data.id, 'amount' : value}};
+        $.ajax ({
+            url: "/update",
+            data: JSON.stringify(obj),
+            type: "POST",
+            success: function (data) {
+                alert("Alterado com Sucesso!");
+            },
+            error: function (error){
+            }
+        })
+    })
+});
+
+pageManager.addPage('estoque.html', [], function (pageContent, data) {
+	console.log("ops...");
+    pageContent.find('#searchStock').on('input', function (e) {
+        console.log("searching...");
+        let input = $(this);
+        let val = input.val();
+        if (val != "") {
+            pageContent.find('.stock-item').addClass('hidden');
+            pageContent.find('[data-field="name"]:contains("'+val+'")').closest('.stock-item').removeClass('hidden');
+            pageContent.find('[data-field="shortDescription"]:contains("'+val+'")').closest('.stock-item').removeClass('hidden');
+        } else {
+            pageContent.find('.stock-item').removeClass('hidden');
+        }
+    });
+
+    $.ajax ({
+        url: "/search/{'product':{}}".replace(/['"]/g, "%22"),
+        type: "GET",
+        datatype: 'HTML',
+        success: function (data) {
+            let item;
+            for(var i = 0; i < data.length; i++) {
+                item = data[i];
+                pageManager.renderInAppend(pageContent, '#stockList', 'stockLine.html', item);
+            }
+        },
+        error: function (error){
+        }
+    })
+});
 
 function convertDate(date) {
 	var day = ("0" + date.getDate()).slice(-2);
