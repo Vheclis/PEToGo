@@ -1,5 +1,6 @@
 let pageManager = new SinglePageManager('index.html', '404.html');
 let user = {'username' : ''};
+
 $(document).ready(function() {
 	sessionStorage.cart = [];
 	pageManager.init();
@@ -10,10 +11,17 @@ $(document).ready(function() {
 	pageManager.addPage('loginDefault.html');
 	pageManager.renderInDocument('#contentBox', 'home.html');
 	pageManager.renderInDocument('#userBox', 'loginDefault.html', function (pageContent, data) {
-        pageContent.find('#register-button').on("click",function (e) {
-            pageManager.renderInDocument('#contentBox','adminCreateClient.html');
+		pageContent.find('#register-button').on("click",function (e) {
+		    pageManager.renderInDocument('#contentBox','adminCreateClient.html');
         })
     });
+	pageManager.renderInDocument('#contentBox', 'stem.html', {
+		'action' : '/insert',
+		'method' : 'POST',
+		'submit' : 'enviar',
+		'prefix' : 'product.',
+		'object' : {'jelow' : 'asdfa', 'numero' : 1}
+	});
 });
 
 //Login
@@ -53,7 +61,34 @@ pageManager.addFormCallback('formLogin', function(err, response) {
 	}
 });
 
+let toString = Object.prototype.toString;
+let number = toString.call(1);
+let string = toString.call('asdf');
+function types(value) {
+	if(toString.call(value) == number)
+		return "number";
+	if(toString.call(value) == string)
+		return "text";
+}
+console.log(types);
 
+function appendInput(page, prefix, name, value) {
+	page.append('<label>'+name+'</label>');
+	page.append('<input class="form-control" type="'+types(value)+'" name="'+prefix+'.'name+'" value="'+value+'"/>');
+}
+
+pageManager.addPage('stem.html', [], function (pageContent, data) {
+	console.log(data);
+	pageContent.find(".stem-root").append("<form data-form-name="+data.name+"/>");
+	let form = pageContent.find("[data-form-name="+data.name+"]");
+	form.attr('action', data.action);
+	form.attr('method', data.method);
+	for(input in data.object) {
+		let value = data.object[input];
+		appendInput(form, prefix, input, value);
+	}
+	form.append('<input type="submit" value="'+data.submit+'"/>');
+});
 
 //Cart
 let cart = new Cart('localStorage');
@@ -155,8 +190,9 @@ pageManager.addPage('store.html', [], function (pageContent, data) {
 	})
 });
 
-/*STOCK
+pageManager.addPage('stockLine.html', ['id', 'name', 'shortDescription', 'bigDescription' , 'price']);
 pageManager.addPage('estoque.html', [], function (pageContent, data) {
+	console.log("ops...");
     pageContent.find('#searchStock').on('input', function (e) {
         console.log("searching...");
         let input = $(this);
@@ -184,7 +220,7 @@ pageManager.addPage('estoque.html', [], function (pageContent, data) {
         error: function (error){
         }
     })
-});*/
+});/**/
 
 function convertDate(date) {
 	var day = ("0" + date.getDate()).slice(-2);
@@ -266,7 +302,6 @@ pageManager.addFormCallback('formAdminCreateProduct', function (err, response) {
     }
 
 })
-pageManager.addPage('estoque.html');
 //'adminCreateAdmin.html'
 pageManager.addPage('adminCreateClient.html');
 //'adminCreateProduct.html'

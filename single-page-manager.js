@@ -48,6 +48,9 @@ SinglePageManager.prototype.renderFields = function (pageContent, page, data) {
 }
 
 SinglePageManager.prototype.addPage = function (page, fields, render) {
+	if(this.pages[page] != undefined) {
+		console.log("page "+page+" already added, overloading.");
+	}
 	this.pages[page] = {
 		'fields' : fields,
 		'render' : render
@@ -73,8 +76,8 @@ SinglePageManager.prototype.render = function (page, data, callback) {
 		self = this;
 		this.getPage(page, function(response){
 			let pageContent = $(response);
-			if(page == 'cartLine.html') {
-				console.log(pageContent);
+			if(page == 'estoque.html') {
+				console.log(self.pages[page]);
 			}
 			self.pages[page].content = pageContent.clone();
 			self.renderFields(pageContent, page, data);
