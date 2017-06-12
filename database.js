@@ -83,7 +83,7 @@ Table.prototype.insert = function (newtuple) {
 	}
 }
 
-Table.prototype.update = function (tuple) {
+Table.prototype.update = function (query) {
 	let result = {
 		'data' : [],
 		'message' : 'ok',
@@ -91,8 +91,9 @@ Table.prototype.update = function (tuple) {
 	};
 
 	if (tuple[this.key] != undefined) {
+		self = this;
 		let array = this.data.filter(function(tuple) {
-			return tupleMatches(query, tuple);
+			return query[self.key] == tuple[self.key];
 		});
 
 		if(array.length == 0) {
@@ -104,7 +105,9 @@ Table.prototype.update = function (tuple) {
 			result.message = 'Something wrong...';
 			return result;
 		} else {
-			tuple
+			for(attr in tuple) {
+				array[0][attr] = tuple[attr];
+			}
 			tuple.forEach(function(value, key, item) {
 				array[0][key] = value;
 			});
@@ -182,6 +185,7 @@ exports.insert = function(table, data, callback) {
 }
 
 exports.update = function(table, data, callback) {
+	console.log("update to" + table);
 	let result = Base[table].update(data);
 	callback(result);
 }
