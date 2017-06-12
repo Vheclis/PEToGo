@@ -12,7 +12,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(express.static(__dirname + '/'));
 
-// respond with "hello world" when a GET request is made to the homepage
+
 app.get('/', function (req, res) {
 	res.redirect('/index.html');
 })
