@@ -1,5 +1,6 @@
 let pageManager = new SinglePageManager('index.html', '404.html');
 let user = {'username' : ''};
+
 $(document).ready(function() {
 	sessionStorage.cart = [];
 	pageManager.init();
@@ -50,7 +51,34 @@ pageManager.addFormCallback('formLogin', function(err, response) {
 	}
 });
 
+let toString = Object.prototype.toString;
+let number = toString.call(1);
+let string = toString.call('asdf');
+function types(value) {
+	if(toString.call(value) == number)
+		return "number";
+	if(toString.call(value) == string)
+		return "text";
+}
+console.log(types);
 
+function appendInput(page, prefix, name, value) {
+	page.append('<label>'+name+'</label>');
+	page.append('<input class="form-control" type="'+types(value)+'" name="'+prefix+'.'+name+'" value="'+value+'"/>');
+}
+
+pageManager.addPage('stem.html', [], function (pageContent, data) {
+	console.log(data);
+	pageContent.find(".stem-root").append("<form data-form-name="+data.name+"/>");
+	let form = pageContent.find("[data-form-name="+data.name+"]");
+	form.attr('action', data.action);
+	form.attr('method', data.method);
+	for(input in data.object) {
+		let value = data.object[input];
+		appendInput(form, prefix, input, value);
+	}
+	form.append('<input type="submit" value="'+data.submit+'"/>');
+});
 
 //Cart
 let cart = new Cart('localStorage');
@@ -158,6 +186,24 @@ pageManager.addPage('store.html', [], function (pageContent, data) {
 	})
 });
 
+<<<<<<< HEAD
+=======
+pageManager.addPage('stockLine.html', ['id', 'name', 'shortDescription', 'bigDescription' , 'price']);
+pageManager.addPage('estoque.html', [], function (pageContent, data) {
+	console.log("ops...");
+    pageContent.find('#searchStock').on('input', function (e) {
+        console.log("searching...");
+        let input = $(this);
+        let val = input.val();
+        if (val != "") {
+            pageContent.find('.stock-item').addClass('hidden');
+            pageContent.find('[data-field="name"]:contains("'+val+'")').closest('.store-item').removeClass('hidden');
+            pageContent.find('[data-field="shortDescription"]:contains("'+val+'")').closest('.store-item').removeClass('hidden');
+        } else {
+            pageContent.find('.stock-item').removeClass('hidden');
+        }
+    });
+>>>>>>> e99540ef5fbb40fcee2a6cdbbc15dbfc3c694ab3
 
 
 function convertDate(date) {
@@ -240,10 +286,13 @@ pageManager.addFormCallback('formAdminCreateProduct', function (err, response) {
     }
 
 })
+<<<<<<< HEAD
 
 
 pageManager.addPage('stockLine.html', ['id', 'name', 'shortDescription', 'bigDescription' , 'price']);
 
+=======
+>>>>>>> e99540ef5fbb40fcee2a6cdbbc15dbfc3c694ab3
 //'adminCreateAdmin.html'
 pageManager.addPage('adminCreateClient.html');
 //'adminCreateProduct.html'
