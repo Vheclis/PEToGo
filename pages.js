@@ -9,12 +9,34 @@ $(document).ready(function() {
 	pageManager.addPage('home.html');
 	pageManager.addPage('loginDefault.html');
 	pageManager.renderInDocument('#contentBox', 'home.html');
-	pageManager.renderInDocument('#userBox', 'loginDefault.html');
+	pageManager.renderInDocument('#userBox', 'loginDefault.html', function (pageContent, data) {
+        pageContent.find('#register-button').on("click",function (e) {
+            pageManager.renderInDocument('#contentBox','adminCreateClient.html');
+        })
+    });
 });
 
 //Login
-pageManager.addPage('loginAdmin.html', ['username']);
-pageManager.addPage('loginClient.html', ['username']);
+pageManager.addPage('loginAdmin.html', ['img','username', 'id', 'telephone', 'email'], function (pageContent, data) {
+    pageContent.find('#adminPhoto').attr("src",user.img);
+    pageContent.find('#button-logoff').on("click", function (e) {
+        user.username = '';
+        user.type = '';
+        $('#navName').text('USUÁRIO');
+        pageManager.renderInDocument('#userBox', 'loginDefault.html');
+        pageManager.renderInDocument('#contentBox','home.html');
+    });
+});
+pageManager.addPage('loginClient.html', ['img','username', 'id', 'telephone', 'email', 'address'], function (pageContent, data) {
+    pageContent.find('#clientPhoto').attr("src",user.img);
+    pageContent.find('#logoff').on("click",function (e) {
+        user.username = '';
+        user.type = '';
+        $('#navName').text('USUÁRIO');
+        pageManager.renderInDocument('#userBox', 'loginDefault.html');
+        pageManager.renderInDocument('#contentBox','home.html');
+    });
+});
 pageManager.addFormCallback('formLogin', function(err, response) {
 	if(err) {
 		console.log('Login error');
@@ -26,8 +48,12 @@ pageManager.addFormCallback('formLogin', function(err, response) {
 		} else {
 			pageManager.renderInDocument('#userBox', 'loginClient.html', response);
 		}
+		$('#navName').text(user.username);
+
 	}
 });
+
+
 
 //Cart
 let cart = new Cart('localStorage');
@@ -47,7 +73,10 @@ pageManager.addPage('carrinho.html', [], function (pageContent, data) {
 		submit.text("Faça login!");
 		submit.attr('disabled', "");
 	}
-		
+
+	pageContent.find('#button-buy').on('click',function (e) {
+        pageManager.renderInDocument('#contentBox', 'pagamento.html');
+    })
 });
 pageManager.addPage('cartLine.html', ['cartid', 'id', 'name', 'shortDescription', 'price'], function (pageContent, data) {
 	console.log(data.item);
@@ -65,17 +94,20 @@ pageManager.addPage('cartLine.html', ['cartid', 'id', 'name', 'shortDescription'
 		$('#cart-total').text(total);
 	});
 });
+pageManager.addPage('pagamento.html');
 
-pageManager.addPage('detalheproduto.html', ['id', 'name', 'shortDescription', 'longDescription', 'price'], function (pageContent, data){
+
+pageManager.addPage('detalheproduto.html', ['id', 'name', 'shortDescription', 'bigDescription', 'price'], function (pageContent, data){
 	pageContent.find("#add-to-cart").on('click', function (e) {
 		let button = $(e.target);
 		cart.addItem(data);
+		alert("Produto adicionado ao carrinho");
 		//console.log(cart.getItems());
 	});
 
 });
 
-pageManager.addPage('storeLine.html', ['id', 'name', 'shortDescription', 'price'], function(pageContent, product){
+pageManager.addPage('storeLine.html', ['id', 'name', 'shortDescription', 'bigDescription' , 'price'], function(pageContent, product){
 	pageContent.on('click', '.product-details', function(e){
 		let button = $(this);
 		let productSearch = "{ 'product' : {'id' : "+product.id+"}}";
@@ -122,6 +154,37 @@ pageManager.addPage('store.html', [], function (pageContent, data) {
 		}
 	})
 });
+
+/*STOCK
+pageManager.addPage('estoque.html', [], function (pageContent, data) {
+    pageContent.find('#searchStock').on('input', function (e) {
+        console.log("searching...");
+        let input = $(this);
+        let val = input.val();
+        if (val != "") {
+            pageContent.find('.stock-item').addClass('hidden');
+            pageContent.find('[data-field="name"]:contains("'+val+'")').closest('.store-item').removeClass('hidden');
+            pageContent.find('[data-field="shortDescription"]:contains("'+val+'")').closest('.store-item').removeClass('hidden');
+        } else {
+            pageContent.find('.stock-item').removeClass('hidden');
+        }
+    });
+
+    $.ajax ({
+        url: "/search/{'product':{}}".replace(/['"]/g, "%22"),
+        type: "GET",
+        datatype: 'HTML',
+        success: function (data) {
+            let item;
+            for(var i = 0; i < data.length; i++) {
+                item = data[i];
+                pageManager.renderInAppend(pageContent, '#stockList', 'stockLine.html', item);
+            }
+        },
+        error: function (error){
+        }
+    })
+});*/
 
 function convertDate(date) {
 	var day = ("0" + date.getDate()).slice(-2);
@@ -191,10 +254,21 @@ pageManager.addPage('scheduleLine.html', [], function(pageContent, data) {
 	}
 });
 //Admin control
+
+
 pageManager.addPage('adminCreateProduct.html');
+pageManager.addFormCallback('formAdminCreateProduct', function (err, response) {
+    if(err) {
+        console.log("Insert error on Create Product");
+        return;
+    } else {
+        alert("Produto inserido com sucesso");
+    }
+
+})
 pageManager.addPage('estoque.html');
 //'adminCreateAdmin.html'
-//'adminCreateClient.html'
+pageManager.addPage('adminCreateClient.html');
 //'adminCreateProduct.html'
 //'adminCreateService.html'
 //'adminEditar.html'
@@ -203,14 +277,17 @@ pageManager.addPage('estoque.html');
 //'carrinho.html'
 //'createPET.html'
 //'detalheProduto.html'
-//'editClientProfile.html'
+
 //'estoque.html'
 //'home.html'
 //'loginAdmin.html'
 //'loginClient.html'
 //'loginDefault.html'
-//'pagamento.html'
-//'petClient.html'
-//'schedulePET.html'
 //'store.html'
 //'storeLine.html'
+
+//Client control
+pageManager.addPage('editClientProfile.html',user);
+pageManager.addPage('petClient.html');
+//'schedulePET.html'
+
