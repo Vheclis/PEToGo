@@ -63,16 +63,21 @@ Table.prototype.insert = function (newtuple) {
 		});
 
 		if(array.length == 0) {
-			self.data.push(newtuple);
+			this.data.push(newtuple);
+			console.log("item added:");
+			console.log(newtuple);
+
 			return result;
 		} else {
 			result.isError = true;
 			result.message = 'Cannot repeat key';
+			console.log('Cannot repeat key');
 			return result;
 		}
 	} else {
 		result.isError = true;
 		result.message = 'Key not defined';
+		console.log('Key not defined');
 		return result;
 
 	}
@@ -167,6 +172,7 @@ exports.search = function(table, data, callback) {
 }
 
 exports.insert = function(table, data, callback) {
+	console.log("insert to" + table);
 	let result = Base[table].insert(data);
 	callback(result);
 }

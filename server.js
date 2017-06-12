@@ -58,9 +58,11 @@ app.get('/search/*', verifyUndefined, function (req, res) {
 })
 
 app.post('/insert', verifyUndefined, function (req, res) {
+	console.log("/insert");
 	let data = req.body;
 	console.log(data);
-	db.insert(Object.keys(data)[0], data, function(result) {
+	let bd = Object.keys(data)[0];
+	db.insert(bd, data[bd], function(result) {
 		if (result.isError) {
 			console.log('error');
 			res.status(400).send(result.message);
