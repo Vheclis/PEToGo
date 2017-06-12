@@ -5,18 +5,18 @@
             <form data-form-name="formAdminCreateProduct" action="/insert" method="POST" target="">
                 <div class="div-field">
                     Produto:
-                    <input name="name" type="text" placeholder="Nome completo"/>
+                    <input name="product.name" type="text" placeholder="Nome completo"/>
                 </div>
                 <div class="div-field">
                     Preço:
-                    <input name="price" type="number" placeholder="1.0"/>
+                    <input name="product.price" type="number" placeholder="1.0"/>
                 </div>
                 <div class="div-field">
                     Quantidade:
-                    <input name="amount" type="number" placeholder="0"/>
+                    <input name="product.amount" type="number" placeholder="0"/>
                 </div>
-                    <textarea name="bigDescription" rows="5" cols="50" style="margin: 5px">Digite aqui uma descrição completa do produto</textarea>
-                    <textarea name="shortDescription" rows="5" cols="50" style="margin: 5px; float: right">Digite aqui uma descrição curta do produto</textarea>
+                    <textarea name="product.bigDescription" rows="5" cols="50" style="margin: 5px">Digite aqui uma descrição completa do produto</textarea>
+                    <textarea name="product.shortDescription" rows="5" cols="50" style="margin: 5px; float: right">Digite aqui uma descrição curta do produto</textarea>
                 <div class="div-field">
                     <span >Foto: </span>
                     <!-- <input name="photo" type="file" style="color: ghostwhite;  width: 50%; float: left"/> -->
