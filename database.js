@@ -154,16 +154,20 @@ let Base = {
 Base.user.insert({'telephone': '(19)3533 - 3324', 'email': 'victor.heclis@usp.br', 'address': '', 'username' : 'Jeff', 'password' : '123', 'type' : 'admin' , 'img':'https://goo.gl/8bgJ2f'});
 Base.user.insert({'telephone': '(11)3431 - 3844', 'email': 'nilson.furquim@usp.br', 'address': 'USP','username' : 'Nilson', 'password' : '1234', 'type' : 'client','img':'https://goo.gl/SWdfhw'});
 
-Base.product.insert({'name' : 'whiskas', 'shortDescription' : 'Ração para gatos','amount': 10 , 'bigDescription':'Raaação para gaatos' ,'price' : 49.90});
-Base.product.insert({'name' : 'pedrigree', 'shortDescription' : 'Ração para doggos', 'amount': 10 , 'bigDescription':'Raaação para dooogos' , 'price' : 59.90});
-Base.product.insert({'name' : 'pedrigree2', 'shortDescription' : 'Ração para doggos2','amount': 10 , 'bigDescription':'Raaação para dooogos2' , 'price' : 59.903});
-Base.product.insert({'name' : 'pedrigree3', 'shortDescription' : 'Ração para doggos3','amount': 10 , 'bigDescription':'Raaação para dooogos3' , 'price' : 59.903});
-Base.product.insert({'name' : 'dogshow', 'shortDescription' : 'Ração para doggos shows','amount': 10 , 'bigDescription':'Raaação para dooogos4' , 'price' : 109.90});
+Base.product.insert({'img':'img/wiskasgato.png','name' : 'whiskas', 'shortDescription' : 'Ração para gatos','amount': 10 , 'bigDescription':'Raaação para gaatos' ,'price' : 49.90});
+Base.product.insert({'img':'https://goo.gl/utWvYW','name' : 'pedrigree', 'shortDescription' : 'Ração para doggos', 'amount': 10 , 'bigDescription':'Raaação para dooogos' , 'price' : 59.90});
+Base.product.insert({'img':'https://goo.gl/utWvYW','name' : 'pedrigree2', 'shortDescription' : 'Ração para doggos2','amount': 10 , 'bigDescription':'Raaação para dooogos2' , 'price' : 59.903});
+Base.product.insert({'img':'https://goo.gl/utWvYW','name' : 'pedrigree3', 'shortDescription' : 'Ração para doggos3','amount': 10 , 'bigDescription':'Raaação para dooogos3' , 'price' : 59.903});
+Base.product.insert({'img':'https://goo.gl/utWvYW','name' : 'dogshow', 'shortDescription' : 'Ração para doggos shows','amount': 10 , 'bigDescription':'Raaação para dooogos4' , 'price' : 109.90});
 
 Base.service.insert({'username' : '', 'type' : 'Banho', 'date' : '2017-06-10', 'time' : '18:00', 'type' : 'Banho', 'status' : 'free'});
 Base.service.insert({'username' : '', 'type' : 'Banho', 'date' : '2017-06-10', 'time' : '19:00', 'type' : 'Banho', 'status' : 'free'});
 Base.service.insert({'username' : '', 'type' : 'Banho', 'date' : '2017-06-10', 'time' : '16:00', 'type' : 'Banho', 'status' : 'free'});
 Base.service.insert({'username' : '', 'type' : 'Banho', 'date' : '2017-06-10', 'time' : '8:00', 'type' : 'Banho', 'status' : 'free'});
+
+Base.pet.insert({'img':'https://goo.gl/MHaQrr','name':'Rex', 'race':'dog1','age': 9000});
+Base.pet.insert({'img':'https://goo.gl/9z4iGk','name':'Petro', 'race':'cat','age': 900});
+Base.pet.insert({'img':'https://goo.gl/OUhXaQ','name':'Tataluga', 'race':'squirtle','age': 90});
 
 exports.search = function(table, data, callback) {
 	console.log("search "+ table);

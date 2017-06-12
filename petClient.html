@@ -1,46 +1,38 @@
-<img id="petPhoto" src="img/dogsick.jpg"
-style="width: 150px; height: 150px; border-radius: 50px; margin: 0px 10px 0px 0px;float: left; border: 1px solid black">
-<div class="col-sm-4 ">
+<div>
+    <input id="searchPet" type="search" placeholder="Pesquisar por nome" style="width: 100%; color: black; border-radius: 7px"/>
     <ul>
-        <div id="petContent" class="div-data-box">
-            <li><h2>Rex</h2></li>
-            <li><p><span>ID: </span> 42</p></li>
-            <li><p><span>Raça: </span> Labrador Fofo</p></li>
-            <li><p><span>Idade: </span> 6 anos</p></li>
-        </div>
-        <div class="div-data-box" style="padding: 0px 20px; ">
-            <h3>Total a ser pago ainda: <span style="float:right;" id="petPrice"> $ 320,00</span></h3>
-        </div>
-    </ul>
-</div>
-<div class="col-sm-6">
-    <ul>
-        <li><h2>Serviços</h2></li>
+    <li><h2>Cadastro de PET</h2></li>
         <li>
-            <table style="width: 100%; border: 1px" cellspacing="0" cellpadding="5">
-
-                <table cellspacing="0" cellpadding="5" border="1" style="width: 100%">
-                    <tr style="background-color: darkblue">
-                        <th>ID</th>
-                        <th>Serviço</th>
-                        <th>Custo</th>
-                        <th>Pago</th>
-                    </tr>
-                </table>
-                <td>
-                    <div style="width: 100%; height: 250px;  overflow: auto">
-                        <table id="tablePet" cellspacing="0" cellpadding="5"  style="width: 100%; border: solid 1px black">
-                            <tr>
-                                <td>123</td>
-                                <td>Tosa</td>
-                                <td>$3,00</td>
-                                <td>Não</td>
-                            </tr>
-                            <!-- Aqui deve ser preenchido com os serviços dos pets-->
-                        </table>
+            <div class="div-signIn">
+                <form data-form-name="formCreatePET" action="/insert" method="POST" target="">
+                    <div class="div-field">
+                        Nome:
+                        <input name="pet.name" type="text" placeholder="Nome completo"/>
                     </div>
-                </td>
-            </table>
+                    <div class="div-field">
+                        Raça:
+                        <input name="pet.race" type="text" placeholder="doggo"/>
+                    </div>
+                    <div class="div-field">
+                        Idade:
+                        <input name="pet.age" type="number" placeholder="0"/>
+                    </div>
+
+                    <div class="div-field">
+                        <span >Foto: </span>
+                        <input name="pet.img" type="text" placeholder="Link para a imagem"/>
+                    </div>
+
+                    <button type='submit' class="btn" style="background-color: darkblue; width: 40%; margin-top: 10px; float: right"><span
+
+                        style="font-size: large; color: white; margin-top: 5px">Cadastrar</span></button>
+                </form>
+            </div>
         </li>
     </ul>
+</div>
+<div id="contentStore" style="margin: 60px 20px 20px 0px; display: inline-flex; flex-direction: column; width: 100%">
+    <div id='petList' class="row" style="margin-top: 20px">
+    </div>
+
 </div>

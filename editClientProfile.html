@@ -2,34 +2,30 @@
     <li><h2>Editar informações</h2></li>
     <li>
         <div class="div-signIn">
-            <form id="formEditClientProfile">
-                <div class="div-field">
-                    Nome:
-                    <input name="name" type="text" placeholder=""/>
-                </div>
+            <form data-form-name="formEditClientProfile" action="/update" method="POST">
                 <div class="div-field">
                     User:
-                    <input name="user" type="text" placeholder=""/>
+                    <input name="user.username" type="text" placeholder="Username"/>
                 </div>
                 <div class="div-field">
                     Senha:
-                    <input name="password" type="password" placeholder=""/>
+                    <input name="user.password" type="password" placeholder="******"/>
                 </div>
                 <div class="div-field">
                     Endereço:
-                    <input name="address" type="text" placeholder=""/>
+                    <input name="user.address" type="text" placeholder="Endereço"/>
                 </div>
                 <div class="div-field">
                     Telefone:
-                    <input name="telephone" type="text" placeholder=""/>
+                    <input name="user.telephone" type="text" placeholder="(__)____-____"/>
                 </div>
                 <div class="div-field">
                     Email:
-                    <input name="email" type="text" placeholder=""/>
+                    <input name="user.email" type="text" placeholder="email@email.com"/>
                 </div>
                 <div class="div-field">
                     Foto:
-                    <input name="img" type="text" placeholder=""/>
+                    <input name="user.img" type="text" placeholder="Link para a imagem"/>
                 </div>
                 <input type="submit" class="btn"
                        style="background-color: darkblue; width: 40%; margin-top: 10px; float: right"><span

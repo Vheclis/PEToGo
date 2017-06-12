@@ -91,10 +91,15 @@ pageManager.addPage('cartLine.html', ['cartid', 'id', 'name', 'shortDescription'
 		$('#cart-total').text(total);
 	});
 });
-pageManager.addPage('pagamento.html');
+pageManager.addPage('pagamento.html',[],function (pageContent, data) {
+    pageContent.find('#button-payment').on("click", function (e) {
+        alert("Pagamento finalizado!");
+    })
+});
 
 
 pageManager.addPage('detalheproduto.html', ['id', 'name', 'shortDescription', 'bigDescription', 'price'], function (pageContent, data){
+    pageContent.find('#productPhoto').attr("src", data.img)
 	pageContent.find("#add-to-cart").on('click', function (e) {
 		let button = $(e.target);
 		cart.addItem(data);
@@ -105,6 +110,7 @@ pageManager.addPage('detalheproduto.html', ['id', 'name', 'shortDescription', 'b
 });
 
 pageManager.addPage('storeLine.html', ['id', 'name', 'shortDescription', 'bigDescription' , 'price'], function(pageContent, product){
+    pageContent.find('#storeImg').attr("src", product.img)
 	pageContent.on('click', '.product-details', function(e){
 		let button = $(this);
 		let productSearch = "{ 'product' : {'id' : "+product.id+"}}";
@@ -152,36 +158,7 @@ pageManager.addPage('store.html', [], function (pageContent, data) {
 	})
 });
 
-//STOCK
-pageManager.addPage('estoque.html', [], function (pageContent, data) {
-    pageContent.find('#searchStock').on('input', function (e) {
-        console.log("searching...");
-        let input = $(this);
-        let val = input.val();
-        if (val != "") {
-            pageContent.find('.stock-item').addClass('hidden');
-            pageContent.find('[data-field="name"]:contains("'+val+'")').closest('.store-item').removeClass('hidden');
-            pageContent.find('[data-field="shortDescription"]:contains("'+val+'")').closest('.store-item').removeClass('hidden');
-        } else {
-            pageContent.find('.stock-item').removeClass('hidden');
-        }
-    });
 
-    $.ajax ({
-        url: "/search/{'product':{}}".replace(/['"]/g, "%22"),
-        type: "GET",
-        datatype: 'HTML',
-        success: function (data) {
-            let item;
-            for(var i = 0; i < data.length; i++) {
-                item = data[i];
-                pageManager.renderInAppend(pageContent, '#stockList', 'stockLine.html', item);
-            }
-        },
-        error: function (error){
-        }
-    })
-});
 
 function convertDate(date) {
 	var day = ("0" + date.getDate()).slice(-2);
@@ -266,6 +243,7 @@ pageManager.addFormCallback('formAdminCreateProduct', function (err, response) {
 
 
 pageManager.addPage('stockLine.html', ['id', 'name', 'shortDescription', 'bigDescription' , 'price']);
+
 //'adminCreateAdmin.html'
 pageManager.addPage('adminCreateClient.html');
 //'adminCreateProduct.html'
@@ -287,6 +265,44 @@ pageManager.addPage('adminCreateClient.html');
 
 //Client control
 pageManager.addPage('editClientProfile.html',user);
-pageManager.addPage('petClient.html');
+pageManager.addPage('petLine.html', ['img','name','race','age'], function (pageContent, data) {
+    pageContent.find('#petImg').attr("src", data.img);
+});
+pageManager.addPage('petClient.html', [], function (pageContent, data) {
+    pageContent.find('#searchPet').on("input", function (e) {
+        console.log("searching for PET...");
+        let input = $(this);
+        let val = input.val();
+        if (val != "") {
+            pageContent.find('.pet-item').addClass('hidden');
+            pageContent.find('[data-field="name"]:contains("'+val+'")').closest('.pet-item').removeClass('hidden');
+        } else {
+            pageContent.find('.pet-item').removeClass('hidden');
+        }
+
+    });
+    $.ajax ({
+        url: "/search/{'pet':{}}".replace(/['"]/g, "%22"),
+        type: "GET",
+        datatype: 'HTML',
+        success: function (data) {
+            let item;
+            for(var i = 0; i < data.length; i++) {
+                item = data[i];
+                pageManager.renderInAppend(pageContent, '#petList', 'petLine.html', item);
+
+            }
+        },
+        error: function (error){
+        }
+    })
+});
+pageManager.addFormCallback('formCreatePET', function (err, response) {
+    if(err){
+        console.log("Error on creating the PET");
+    } else {
+        pageManager.renderInDocument('#contentBox','petClient.html');
+    }
+})
 //'schedulePET.html'
 
