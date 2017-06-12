@@ -64,7 +64,7 @@ console.log(types);
 
 function appendInput(page, prefix, name, value) {
 	page.append('<label>'+name+'</label>');
-	page.append('<input class="form-control" type="'+types(value)+'" name="'+prefix+'.'name+'" value="'+value+'"/>');
+	page.append('<input class="form-control" type="'+types(value)+'" name="'+prefix+'.'+name+'" value="'+value+'"/>');
 }
 
 pageManager.addPage('stem.html', [], function (pageContent, data) {
