@@ -104,6 +104,7 @@ pageManager.addPage('carrinho.html', [], function (pageContent, data) {
         pageManager.renderInDocument('#contentBox', 'pagamento.html');
     })
 });
+
 pageManager.addPage('cartLine.html', ['cartid', 'id', 'name', 'shortDescription', 'price'], function (pageContent, data) {
 	console.log(data.item);
 	pageManager.renderFields(pageContent, 'cartLine.html', data.item);
@@ -144,7 +145,7 @@ pageManager.addPage('storeLine.html', ['id', 'name', 'shortDescription', 'bigDes
 		let button = $(this);
 		let productSearch = "{ 'product' : {'id' : "+product.id+"}}";
 		$.ajax ({
-			url: "/search/" + productSearch.replace(/['"]/g, "%22"),
+			url: "/product?id=" + product.id,
 			type: "GET",
 			producttype: 'HTML',
 			success: function (product) {
@@ -172,7 +173,7 @@ pageManager.addPage('store.html', [], function (pageContent, data) {
 	});
 
 	$.ajax ({
-		url: "/search/{'product':{}}".replace(/['"]/g, "%22"),
+		url: "/products/20/0",
 		type: "GET",
 		datatype: 'HTML',
 		success: function (data) {
@@ -222,7 +223,7 @@ pageManager.addPage('estoque.html', [], function (pageContent, data) {
     });
 
     $.ajax ({
-        url: "/search/{'product':{}}".replace(/['"]/g, "%22"),
+	url: "/products/20/0",
         type: "GET",
         datatype: 'HTML',
         success: function (data) {
@@ -245,7 +246,6 @@ function convertDate(date) {
 }
 
 pageManager.addPage('scheduleLine.html', [], function(pageContent, data) {
-	console.log("asdfasdfasd");
 	pageContent.find('[name="service.username"]').val(data.username).attr('value', data.username);
 	pageContent.find('[name="service.id"]').val(data.id).attr('value', data.id);
 	pageContent.find('[name="service.type"]').val(data.type).attr('value', data.type);
@@ -269,7 +269,7 @@ pageManager.addPage('schedulePET.html', ['day1', 'day2', 'day3', 'day4'], functi
 			console.log(date);
 			pageContent.find('#day'+i+'services').empty();
 			pageContent.find('[data-field=day'+i+']').text(convertDate(date));
-			url = '/search/{"service":{"status":"free","date":"'+convertDate(date)+'"}}';
+			url = '/service?status=free&date='+convertDate(date);
 			$.ajax ({
 				url: url,
 				type: "GET",
@@ -325,20 +325,6 @@ pageManager.addPage('adminCreateAdmin.html');
 pageManager.addPage('adminCreateClient.html');
 pageManager.addPage('adminCreateProduct.html');
 pageManager.addPage('adminCreateService.html');
-//'adminEditar.html'
-//'adminMain.html'
-//'adminServices.html'
-//'carrinho.html'
-//'createPET.html'
-//'detalheProduto.html'
-
-//'estoque.html'
-//'home.html'
-//'loginAdmin.html'
-//'loginClient.html'
-//'loginDefault.html'
-//'store.html'
-//'storeLine.html'
 
 //Client control
 pageManager.addPage('editClientProfile.html',user);
@@ -359,7 +345,7 @@ pageManager.addPage('petClient.html', [], function (pageContent, data) {
 
     });
     $.ajax ({
-        url: "/search/{'pet':{}}".replace(/['"]/g, "%22"),
+        url: "/pet",
         type: "GET",
         datatype: 'HTML',
         success: function (data) {
@@ -381,5 +367,3 @@ pageManager.addFormCallback('formCreatePET', function (err, response) {
         pageManager.renderInDocument('#contentBox','petClient.html');
     }
 })
-//'schedulePET.html'
-

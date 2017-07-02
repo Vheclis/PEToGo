@@ -19,6 +19,7 @@
   "homepage": "https://github.com/Vheclis/PEToGo#readme",
   "dependencies": {
     "express": "^4.15.3",
+    "nano": "^6.3.0",
     "request": "^2.81.0"
   }
 }
