@@ -1,0 +1,20 @@
+{
+	"_id" : "_design/docs",
+	"views": {
+		"getUsers":	{
+			"map": "function(doc) { if(doc.typeDB == 'user') emit([doc.username, doc._id], doc) }"
+		},
+		"getProducts": {
+			"map" : "function(doc) { if(doc.typeDB == 'product') emit(doc.name, doc) }"
+		},
+		"getProdStore": {
+			"map" : "function (doc) { if(doc.typeDB == 'product') emit(doc._id, {'img' : doc.img, 'name' : doc.name, 'shortDescription': doc.shortDescription, 'price' : doc.price})}"
+		},
+		"getServices": {
+			"map" : "function(doc) { if(doc.typeDB == 'service') emit([doc.username, doc.type], doc) }"
+		},
+		"getPets": {
+			"map" : "function(doc) { if(doc.typeDB == 'pet') emit([doc.owner, doc.name], doc) }"
+		}
+	}
+}
