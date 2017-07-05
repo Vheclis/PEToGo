@@ -1,8 +1,11 @@
 {
 	"_id" : "_design/docs",
 	"views": {
-		"getUsers":	{
+		"getLogin":	{
 			"map": "function(doc) { if(doc.typeDB == 'user') emit([doc._id, doc.password], doc) }"
+		},
+		"getUsers":	{
+			"map": "function(doc) { if(doc.typeDB == 'user') emit([doc._id, doc.name, doc.email], doc) }"
 		},
 		"getProducts": {
 			"map" : "function(doc) { if(doc.typeDB == 'product') emit(doc.name, doc) }"

@@ -5,13 +5,6 @@ const fs = require('fs');
 //const db = require('./database');
 const nano = require('nano')('http://localhost:5984');
 
-//nano.db.create('user');
-//nano.db.create('product');
-//nano.db.create('service');
-//nano.db.create('pet');
-//nano.db.create('buy');
-//nano.db.create('offers');
-
 
 //nano.db.destroy('alice', function() {
 //	nano.db.create('alice', function() {
@@ -30,15 +23,7 @@ const nano = require('nano')('http://localhost:5984');
 const express = require('express');
 const app = express();
 
-const db = {
-	'user' : nano.use('user'),
-	'product' : nano.use('product'),
-	'service' : nano.use('service'),
-	'pet' : nano.use('pet'),
-	'buy' : nano.use('buy'),
-	'offers' : nano.use('offers')
-};
-
+const db = nano.use('petogo');
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(express.static(__dirname + '/'));
@@ -124,7 +109,7 @@ var verifyUndefined = function(req, res, next) {
 //})
 //
 //
-//app.delete('/remove', verifyUndefined, function (req, res) {
+//app.dplete('/remove', verifyUndefined, function (req, res) {
 //	console.log("/remove");
 //	let data = req.body;
 //	console.log(data);
@@ -145,7 +130,23 @@ var verifyUndefined = function(req, res, next) {
 //needs:
 app.post('/login', (req, res) => {
 	let user = req.body.user;
-	res.send(req.url);
+	db.view('docs', 'getLogin', {key: [user.username, user.password], limit: 1}, function(err, body) {
+		if(err) {
+			console.log("ERROR");
+			console.log(err);
+			res.status(400).send("ERROR");
+		} else {
+			console.log("FOUND");
+			let res_user = body.rows[0].value;
+			res_user.username = res_user._id;
+			delete res_user['_id'];
+			delete res_user['_rev'];
+			delete res_user['typeDB'];
+			delete res_user['password'];
+			console.log(res_user);
+			res.send(res_user);
+		}
+	});
 });
 
 //offers
@@ -155,11 +156,50 @@ app.get('/offers', (req, res) => {
 
 //products
 app.get('/products/:count/:start', (req, res) => {
-	res.send(req.url);
+	db.view('docs', 'getProducts', {limit: req.params.count, skip: req.params.start}, function(err, body) {
+		if(err) {
+			console.log("ERROR");
+			console.log(err);
+			res.status(400).send("ERROR");
+		} else {
+			console.log("FOUND");
+			let rows = [];
+			let row_value;
+			rows = body.rows.map(row => {
+				row_value = row.value;
+				delete row_value['_id'];
+				delete row_value['_rev'];
+				delete row_value['typeDB'];
+				return row_value;
+			});
+			console.log(rows);
+			res.send(rows);
+		}
+	});
 });
 
 //query
 app.get('/product', (req, res) => {
+	db.view('docs', 'getProdStore', {key: req.query.id}, function(err, body) {
+		if(err) {
+			console.log("ERROR");
+			console.log(err);
+			res.status(400).send("ERROR");
+		} else {
+			console.log("FOUND");
+			let rows = [];
+			let row_value;
+			rows = body.rows.map(row => {
+				row_value = row.value;
+				delete row_value['_id'];
+				delete row_value['_rev'];
+				delete row_value['typeDB'];
+				return row_value;
+			});
+			console.log(rows);
+			res.send(rows);
+		}
+	});
 	console.log(req.query);
 	res.send(req.url);
 });
