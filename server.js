@@ -28,8 +28,6 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(express.static(__dirname + '/'));
 
-
-
 app.get('/', function (req, res) {
 	res.redirect('/index.html');
 })
@@ -219,8 +217,35 @@ app.get('/pet', (req, res) => {
 	res.send(req.url);
 });
 
+
+
 //insert
 app.post('/insert/:db', (req, res) => {
+	let typeDB = req.params.db;
+	let data;
+	data = req.body[typeDB];
+	data["typeDB"] = typeDB;
+	if(typeDB == 'user') {
+		db.insert(data, data.username, function(err, body){
+			if(err){
+				console.log("ERROR");
+				console.log(err);
+				res.status(400).send("ERROR");
+			} else {
+				console.log("INSERT COMPLETE");
+			}
+		});
+	} else {
+		db.insert(data, function(err, body){
+			if(err){
+				console.log("ERROR");
+				console.log(err);
+				res.status(400).send("ERROR");
+			} else {
+				console.log("INSERT COMPLETE");
+			}
+		});
+	}
 	res.send(req.url);
 });
 
