@@ -8,8 +8,8 @@ curl -X PUT http://127.0.0.1:5984/petogo/"Nilson" -d '{"typeDB": "user", "name" 
 	
 
 curl -X PUT http://127.0.0.1:5984/petogo/"1" -d '{"typeDB": "product", "img":"img/wiskasgato.png", "name" : "whiskas", "shortDescription" : "Ração para gatos", "amount": 10 , "bigDescription":"Raaação para gaatos" , "price" : 49.90 }'
-curl -X PUT http://127.0.0.1:5984/petogo/"2" -d '{"typeDB": "product", "img":"https://goo.gl/utWvYW", "name" : "pedrigree", "shortDescription" : "Ração para doggos", "amount": 10 , "bigDescription":"Raaação para dooogos" , "price" : 59.90 }'
-curl -X PUT http://127.0.0.1:5984/petogo/"3" -d '{"typeDB": "product", "img":"https://goo.gl/utWvYW", "name" : "pedrigree2", "shortDescription" : "Ração para doggos2", "amount": 10 , "bigDescription":"Raaação para dooogos2" , "price" : 59.903 }'
+curl -X PUT http://127.0.0.1:5984/petogo/"2" -d '{"typeDB": "product", "img":"https://goo.gl/utWvYW", "name" : "pedrigree", "shortDescription" : "Ração para doggos", "amount": 13 , "bigDescription":"Raaação para dooogos" , "price" : 59.90 }'
+curl -X PUT http://127.0.0.1:5984/petogo/"3" -d '{"typeDB": "product", "img":"https://goo.gl/utWvYW", "name" : "pedrigree2", "shortDescription" : "Ração para doggos2", "amount": 16 , "bigDescription":"Raaação para dooogos2" , "price" : 59.903 }'
 curl -X PUT http://127.0.0.1:5984/petogo/"4" -d '{"typeDB": "product", "img":"https://goo.gl/utWvYW", "name" : "pedrigree3", "shortDescription" : "Ração para doggos3", "amount": 10 , "bigDescription":"Raaação para dooogos3" , "price" : 59.903 }'
 curl -X PUT http://127.0.0.1:5984/petogo/"5" -d '{"typeDB": "product", "img":"https://goo.gl/utWvYW", "name" : "dogshow", "shortDescription" : "Ração para doggos shows", "amount": 10 , "bigDescription":"Raaação para dooogos4" , "price" : 109.90 }'
 

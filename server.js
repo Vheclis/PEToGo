@@ -232,8 +232,13 @@ app.get('/service', (req, res) => {
 
 //schedule
 app.put('/schedule', (req, res) => {
-	db.get(req.body.id, function(err, body){
-		db.insert({'status':'booked','_rev': body._rev}, req.body.id, function(err, body){
+	let service = req.body.service;
+
+	db.get(service.id, function(err, body){
+		
+		body.status = 'booked';
+		//console.log(body);
+		db.insert(body, req.body.id, function(err, body){
 			if(err)
 			{
 				console.log("ERROR");
