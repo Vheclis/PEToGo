@@ -203,8 +203,31 @@ app.get('/product', (req, res) => {
 });
 
 //services
-app.get('/service/', (req, res) => {
-	res.send(req.url);
+app.get('/service', (req, res) => {
+	let status = req.query.status;
+	let date = req.query.date;
+	let type = req.query.type;
+	if (type == 'todos' || type == 'Todos') {
+		db.view('docs','getServices', {startkey : [date,status], endkey : [date, status,{},{},{}]},function(err,body){
+			if(err){
+				console.log("ERROR");
+				console.log(err);
+				res.status(400).send("ERROR");			
+			} else {
+				res.send(body.rows);
+			}
+		})
+	} else {
+		db.view('docs','getServices', {startkey : [date,status,type], endkey : [date, status, type,{},{}]},function(err,body){
+			if(err){
+				console.log("ERROR");
+				console.log(err);
+				res.status(400).send("ERROR");			
+			} else {
+				res.send(body.rows);
+			}
+		})
+	}
 });
 
 //schedule

@@ -14,7 +14,7 @@
 			"map" : "function (doc) { if(doc.typeDB == 'product') emit(doc._id, {'img' : doc.img, 'name' : doc.name, 'shortDescription': doc.shortDescription, 'price' : doc.price})}"
 		},
 		"getServices": {
-			"map" : "function(doc) { if(doc.typeDB == 'service') emit([doc._id, doc.time, doc.date, doc.type], doc) }"
+			"map" : "function(doc) { if(doc.typeDB == 'service') emit([doc.date, doc.status, doc.type, doc._id, doc.time], doc) }"
 		},
 		"getPets": {
 			"map" : "function(doc) { if(doc.typeDB == 'pet') emit([doc.owner, doc.name], doc) }"

@@ -258,6 +258,7 @@ pageManager.addPage('scheduleLine.html', [], function(pageContent, data) {
 });
 
 pageManager.addPage('schedulePET.html', ['day1', 'day2', 'day3', 'day4'], function(pageContent, data) {
+	let buttonServType = 'Todos';
 	let datePicker = pageContent.find('#serviceDate');
 	datePicker.on('input', function (e) {
 		let datePicker = $(e.target);
@@ -266,10 +267,9 @@ pageManager.addPage('schedulePET.html', ['day1', 'day2', 'day3', 'day4'], functi
 		date.setDate(date.getDate() - 1);
 		let url;
 		for(let i = 1; i < 5; i++) {
-			console.log(date);
 			pageContent.find('#day'+i+'services').empty();
 			pageContent.find('[data-field=day'+i+']').text(convertDate(date));
-			url = '/service?status=free&date='+convertDate(date);
+			url = '/service?status=free&date='+convertDate(date)+'&type='+buttonServType;
 			$.ajax ({
 				url: url,
 				type: "GET",
@@ -277,7 +277,7 @@ pageManager.addPage('schedulePET.html', ['day1', 'day2', 'day3', 'day4'], functi
 				success: function (data) {
 					let service;
 					for(var j = 0; j < data.length; j++) {
-						service = data[j];
+						service = data[j].value;
 						service.username = user.username;
 						pageManager.renderInAppend(pageContent, '#day'+i+'services', 'scheduleLine.html', service);
 					}
@@ -295,10 +295,12 @@ pageManager.addPage('schedulePET.html', ['day1', 'day2', 'day3', 'day4'], functi
 	let selectors = pageContent.find('.service-type-selector')
 	selectors.on('click', function(e) {
 		let button = $(e.target);
-		let query = button.text();
+		buttonServType = button.val();
+		let query = button.val().toString();
+		console.log(query);
 		selectors.removeClass('active');
 		button.addClass("active");
-		if (button.val() == "todos") {
+		if (button.val() == "Todos") {
 			pageContent.find(".schedule-item").removeClass('hidden');
 			return;
 		} else {

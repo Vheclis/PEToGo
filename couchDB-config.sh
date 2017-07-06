@@ -17,6 +17,7 @@ curl -X PUT http://127.0.0.1:5984/petogo/"6" -d '{"typeDB": "service", "username
 curl -X PUT http://127.0.0.1:5984/petogo/"7" -d '{"typeDB": "service", "username" : "", "date" : "2017-06-10", "time" : "19:00", "type" : "Banho", "status" : "free"}'
 curl -X PUT http://127.0.0.1:5984/petogo/"8" -d '{"typeDB": "service", "username" : "", "date" : "2017-06-10", "time" : "16:00", "type" : "Banho", "status" : "free"}'
 curl -X PUT http://127.0.0.1:5984/petogo/"9" -d '{"typeDB": "service", "username" : "", "date" : "2017-06-10", "time" : "8:00", "type" : "Banho", "status" : "free"}'
+curl -X PUT http://127.0.0.1:5984/petogo/"13" -d '{"typeDB": "service", "username" : "", "date" : "2017-07-06", "time" : "8:00", "type" : "Banho", "status" : "free"}'
 
 
 curl -X PUT http://127.0.0.1:5984/petogo/"10" -d '{"typeDB": "pet", "owner":"Nilson", "img":"https://goo.gl/MHaQrr", "name":"Rex", "race":"dog1", "age": 9000 }'
