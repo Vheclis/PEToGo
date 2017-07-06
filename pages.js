@@ -1,5 +1,5 @@
 let pageManager = new SinglePageManager('index.html', '404.html');
-let user = {'username' : ''};
+var user = {'username' : ''};
 
 $(document).ready(function() {
 	sessionStorage.cart = [];
@@ -332,6 +332,7 @@ pageManager.addPage('petLine.html', ['img','name','race','age'], function (pageC
     pageContent.find('#petImg').attr("src", data.img);
 });
 pageManager.addPage('petClient.html', [], function (pageContent, data) {
+	pageContent.find('#ownerPET').attr('value', user.username);
     pageContent.find('#searchPet').on("input", function (e) {
         console.log("searching for PET...");
         let input = $(this);
@@ -344,16 +345,17 @@ pageManager.addPage('petClient.html', [], function (pageContent, data) {
         }
 
     });
+    let url = "/pet/"+user.username;
+    console.log(url);
     $.ajax ({
-        url: "/pet",
+        url: url,
         type: "GET",
         datatype: 'HTML',
         success: function (data) {
             let item;
-            for(var i = 0; i < data.length; i++) {
-                item = data[i];
+            for(var i = 0; i < data.rows.length; i++) {
+                item = data.rows[i].value;
                 pageManager.renderInAppend(pageContent, '#petList', 'petLine.html', item);
-
             }
         },
         error: function (error){

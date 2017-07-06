@@ -203,18 +203,40 @@ app.get('/product', (req, res) => {
 });
 
 //services
-app.get('/service', (req, res) => {
+app.get('/service/', (req, res) => {
 	res.send(req.url);
 });
 
 //schedule
 app.put('/schedule', (req, res) => {
+	db.get(req.body.id, function(err, body){
+		db.insert({'status':'booked','_rev': body._rev}, req.body.id, function(err, body){
+			if(err)
+			{
+				console.log("ERROR");
+				console.log(err);
+				res.status(400).send("ERROR");			
+			} else {
+				console.log("SERVICE UPDATED");
+			}
+		})
+	});
 	res.send(req.url);
 });
 
 //pets
-app.get('/pet', (req, res) => {
-	res.send(req.url);
+app.get('/pet/:user', (req, res) => {
+	let owner = req.params.user
+	db.view('docs', 'getPets', {startkey : [owner], endkey : [owner, {}]}, function(err,body){
+		if(err)
+		{
+			console.log("ERROR");
+			console.log(err);
+			res.status(400).send("ERROR");
+		} else {
+			res.send(body);
+		}
+	});
 });
 
 
@@ -222,8 +244,7 @@ app.get('/pet', (req, res) => {
 //insert
 app.post('/insert/:db', (req, res) => {
 	let typeDB = req.params.db;
-	let data;
-	data = req.body[typeDB];
+	let data = req.body[typeDB];
 	data["typeDB"] = typeDB;
 	if(typeDB == 'user') {
 		db.insert(data, data.username, function(err, body){
